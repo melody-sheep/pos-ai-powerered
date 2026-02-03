@@ -12,6 +12,9 @@ pos-ai-powerered/ 📁 - Project root
 ├── README.md 📖 - Readme file
 ├── test-connection.php 🔗 - DB test script
 ├── vite.config.js ⚡ - Vite config
+├── postcss.config.js ⚙️ - PostCSS config
+├── tailwind.config.js 🎨 - Tailwind config
+├── TODO.md 📝 - TODO list
 ├── app/ 📁 - Application code
 │   ├── Http/ 🌐 - HTTP layer
 │   │   ├── Controllers/ 🎮 - Controllers
@@ -26,6 +29,7 @@ pos-ai-powerered/ 📁 - Project root
 │   │   │       ├── PasswordController.php 🔒 - Password controller
 │   │   │       ├── PasswordResetLinkController.php 🔗 - Password reset link
 │   │   │       ├── RegisteredUserController.php 👤 - User registration
+│   │   │       ├── SelectRoleController.php 👤 - Select role controller
 │   │   │       └── VerifyEmailController.php 📧 - Email verification
 │   │   └── Requests/ 📝 - Request classes
 │   │       ├── ProfileUpdateRequest.php 👤 - Profile update request
@@ -62,7 +66,8 @@ pos-ai-powerered/ 📁 - Project root
 │   ├── migrations/ 🔄 - DB migrations
 │   │   ├── 0001_01_01_000000_create_users_table.php 👤 - Users table
 │   │   ├── 0001_01_01_000001_create_cache_table.php 💾 - Cache table
-│   │   └── 0001_01_01_000002_create_jobs_table.php 📋 - Jobs table
+│   │   ├── 0001_01_01_000002_create_jobs_table.php 📋 - Jobs table
+│   │   └── 2026_02_02_160515_add_role_to_users_table.php 👤 - Add role to users
 │   └── seeders/ 🌱 - DB seeders
 │       └── DatabaseSeeder.php 🌱 - DB seeder
 ├── public/ 🌍 - Public assets
@@ -77,14 +82,19 @@ pos-ai-powerered/ 📁 - Project root
 │   │   ├── app.js 📜 - App JS
 │   │   └── bootstrap.js 🚀 - Bootstrap JS
 │   └── views/ 👁️ - Blade templates
-│       ├── dashboard.blade.php 📊 - Dashboard view
+│       ├── temp-logout.blade.php 👋 - Temp logout view
+│       ├── test-design.blade.php 🧪 - Test design view
+│       ├── test-login.blade.php 🧪 - Test login view
 │       ├── welcome.blade.php 👋 - Welcome view
+│       ├── cashier/ - cashier POV
+│       │   └── dashboard-cdn.blade.php 
 │       ├── auth/ 🔐 - Auth views
 │       │   ├── confirm-password.blade.php 🔒 - Confirm password
 │       │   ├── forgot-password.blade.php ❓ - Forgot password
 │       │   ├── login.blade.php 🔑 - Login view
 │       │   ├── register.blade.php 📝 - Register view
 │       │   ├── reset-password.blade.php 🔄 - Reset password
+│       │   ├── select-role.blade.php 👤 - Select role view
 │       │   └── verify-email.blade.php 📧 - Verify email
 │       ├── components/ 🧩 - View components
 │       │   ├── application-logo.blade.php 🌟 - App logo
@@ -102,6 +112,7 @@ pos-ai-powerered/ 📁 - Project root
 │       │   └── text-input.blade.php 📝 - Text input
 │       ├── layouts/ 📐 - Layouts
 │       │   ├── app.blade.php 📐 - App layout
+│       │   ├── guest-layout.blade.php 👤 - Guest layout
 │       │   ├── guest.blade.php 👤 - Guest layout
 │       │   └── navigation.blade.php 🧭 - Navigation
 │       └── profile/ 👤 - Profile views
@@ -111,6 +122,7 @@ pos-ai-powerered/ 📁 - Project root
 │               ├── update-password-form.blade.php 🔒 - Update password
 │               └── update-profile-information-form.blade.php 👤 - Update profile
 ├── routes/ 🛤️ - Route definitions
+│   ├── auth.php 🔐 - Auth routes
 │   ├── console.php 💻 - Console routes
 │   └── web.php 🌐 - Web routes
 ├── storage/ 💾 - Storage

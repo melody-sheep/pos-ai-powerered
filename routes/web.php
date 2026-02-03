@@ -16,9 +16,9 @@ Route::get('/select-role', [SelectRoleController::class, 'create'])
     ->name('select-role')
     ->middleware('guest');
 
-// Dashboard route
+// Dashboard route - UPDATED to use cashier dashboard
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('cashier.dashboard-cdn'); // Use the CDN version
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -58,7 +58,6 @@ Route::get('/get-logout', function() {
 Route::get('/test-design', function() {
     return view('test-design');
 });
-
 
 Route::get('/test-login-page', function() {
     return view('test-login');

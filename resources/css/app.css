@@ -1,79 +1,39 @@
+
 @import 'tailwindcss';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
-@theme {
-    --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-    
-    --color-background: hsl(var(--background));
-    --color-foreground: hsl(var(--foreground));
-    
-    --radius-lg: 1rem;
-    --radius-md: 0.75rem;
-    --radius-sm: 0.5rem;
+/* Cashier specific styles */
+.cashier-container {
+    width: 1440px;
+    height: 1024px;
+    margin: 0 auto;
+    background: white;
 }
 
-@layer base {
-    :root {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-    }
-    
-    body {
-        @apply bg-gray-900 text-gray-100;
-    }
-    
-    /* Scrollbar styling */
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        @apply bg-gray-800;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        @apply bg-gray-600 rounded-full hover:bg-gray-500;
-    }
+.cashier-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 40px;
 }
 
-@layer components {
-    .input-field {
-        @apply w-full px-4 py-3 bg-gray-800/60 border border-gray-700 rounded-xl text-white placeholder-gray-400
-               focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/30 
-               transition-all duration-200;
-    }
-    
-    .btn-primary {
-        @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl 
-               hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 
-               focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 
-               shadow-lg hover:shadow-purple-500/25 transform hover:-translate-y-0.5;
-    }
-    
-    .btn-secondary {
-        @apply px-6 py-3 bg-gray-800/60 border border-gray-700 text-white font-semibold rounded-xl 
-               hover:bg-gray-700/60 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 
-               transition-all duration-300;
-    }
-    
-    .card-glass {
-        @apply bg-gray-900/40 backdrop-blur-lg border border-gray-800/50 rounded-2xl 
-               shadow-2xl shadow-black/20;
-    }
-    
-    .role-card {
-        @apply w-full p-6 bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl 
-               border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 
-               group hover:scale-[1.02] cursor-pointer backdrop-blur-sm;
-    }
-    
-    .role-icon {
-        @apply w-16 h-16 rounded-xl flex items-center justify-center 
-               group-hover:shadow-lg transition-shadow duration-300;
-    }
+.cashier-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.cashier-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.cashier-tab-container {
+    width: 1361px;
+    height: 80px;
+    border: 2px solid #FFC5D9;
+    background: white;
+    border-radius: 8px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
 }

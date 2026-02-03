@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Login</title>
+    <title>Login</title>
     <!-- Use the same head as guest.blade.php -->
     <style>
         .atom-container {
@@ -110,7 +110,7 @@
         <div class="atom atom-2"></div>
         <div class="atom atom-3"></div>
         <div class="atom atom-4"></div>
-        
+
         <!-- Particles -->
         @for ($i = 0; $i < 20; $i++)
             <div class="particle" style="
@@ -154,7 +154,7 @@
             </div>
 
             <!-- Form -->
-            <div class="bg-gray-900/40 backdrop-blur-lg border border-gray-800/50 rounded-2xl shadow-2xl shadow-black/20 p-8">
+            <div class="bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl shadow-black/20 p-8 hover:bg-gray-700 transition-all duration-300">
                 <form method="POST" action="{{ route('login') }}" class="space-y-6">
                     @csrf
                     
@@ -175,7 +175,7 @@
                     </div>
                     
                     <!-- Button -->
-                    <button type="submit" 
+                    <button type="submit"
                             class="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
                         Sign In
                     </button>
