@@ -1,0 +1,603 @@
+/* CUSTOM STYLES FOR CASHIER DASHBOARD */
+
+/* Core Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    overflow: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Main container */
+.main-container {
+    width: 100%;
+    min-width: 1440px;
+    max-width: 1920px;
+    min-height: 1024px;
+    margin: 0 auto;
+    background: white;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+/* Header stays fixed to left */
+.header-container {
+    padding-top: 24px;
+    position: relative;
+    left: 40px;
+    width: calc(100% - 80px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header content (logo and title) */
+.header-left-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Header right content (icons) */
+.header-right-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Tab container */
+.tab-container {
+    position: relative;
+    left: 40px;
+    width: calc(100% - 80px);
+    max-width: 1361px;
+    height: 80px;
+    border: 3px solid #FFC5D9;
+    background: white;
+    border-radius: 8px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+/* Logo */
+.logo-responsive {
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    width: 48px;
+    height: 48px;
+}
+
+/* Logo color */
+.logo-triangle {
+    stroke: #484545;
+}
+
+/* Header text */
+.title-responsive {
+    font-weight: bold;
+    color: #484545;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    font-size: 40px;
+}
+
+/* Notification Bell Icon */
+.notification-bell {
+    color: #484545;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.notification-bell:hover {
+    color: #333;
+    transform: scale(1.05);
+}
+
+/* Profile Icon */
+.profile-icon {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile-icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #f3f4f6;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.profile-icon-circle:hover {
+    background-color: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+/* Dropdowns */
+.dropdown-content {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+/* Navigation Tabs Styles */
+.nav-tabs {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* First column - Food items */
+.nav-column-1 {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    height: 100%;
+}
+
+/* Second column - Orders/Log */
+.nav-column-2 {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    height: 100%;
+}
+
+/* Vertical separator line - 3px with pink color and rounded edges */
+.vertical-separator {
+    width: 3px;
+    height: 57px;
+    background-color: #FFC5D9;
+    border-radius: 3px; /* Rounded edges */
+    margin: 0 50px;
+}
+
+/* Tab item */
+.tab-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 5px;
+}
+
+/* Tab text - 30px font */
+.tab-text {
+    font-size: 30px;
+    font-weight: 500;
+    color: #484545;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Active tab text */
+.tab-item.active .tab-text {
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* Moving indicator container */
+.indicator-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 1;
+}
+
+/* Moving indicator - QUICK animation */
+.moving-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    background-color: #FFC5D9;
+    border-radius: 2px 2px 0 0;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Fast animation */
+}
+
+/* Hover effects */
+.tab-item:hover .tab-text {
+    opacity: 0.85;
+}
+
+/* =================================== */
+/* TWO-COLUMN LAYOUT STYLES - PERFECTLY ALIGNED */
+/* =================================== */
+
+/* Two-column container - EXACTLY matches tab container */
+.two-column-container {
+    position: relative;
+    left: 40px;
+    width: calc(100% - 80px);
+    max-width: 1361px;
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    min-height: 650px;
+}
+
+/* Each column - PERFECTLY CALCULATED WIDTH */
+.column {
+    flex: 1;
+    min-width: 0;
+    min-height: 650px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* First column - Pink border (670.5px) */
+.column-products {
+    border: 3px solid #FFC5D9;
+    background: linear-gradient(to bottom, #FFF9FB, white);
+}
+
+/* Second column - Gray dashed border (670.5px) */
+.column-orders {
+    border: 3px dashed #484545;
+    background: linear-gradient(to bottom, #F8F8F8, white);
+    position: relative;
+}
+
+/* Custom dashed border effect */
+.column-orders {
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(72, 69, 69, 0.1) 10px,
+        rgba(72, 69, 69, 0.1) 20px
+    );
+    background-size: 28px 28px;
+}
+
+/* Order Place Here text - CLEAN (no background) */
+.order-place-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    font-weight: 500;
+    color: #484545;
+    text-align: center;
+    white-space: nowrap;
+    /* REMOVED background, padding, shadow */
+    z-index: 2;
+}
+
+/* Column content area */
+.column-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Placeholder styling */
+.placeholder-content {
+    text-align: center;
+    max-width: 400px;
+    z-index: 1;
+}
+
+.placeholder-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    background: #f3f4f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+}
+
+.placeholder-title {
+    color: #374151;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.placeholder-text {
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* =================================== */
+/* RESPONSIVE MEDIA QUERIES */
+/* =================================== */
+
+@media (max-width: 1600px) {
+    .tab-text {
+        font-size: 28px;
+    }
+    .nav-column-1,
+    .nav-column-2 {
+        gap: 50px;
+    }
+    .vertical-separator {
+        margin: 0 40px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .tab-text {
+        font-size: 26px;
+    }
+    .nav-column-1,
+    .nav-column-2 {
+        gap: 40px;
+    }
+    .vertical-separator {
+        margin: 0 35px;
+        height: 52px;
+    }
+    .tab-container {
+        padding: 0 35px;
+        height: 75px;
+    }
+    
+    .two-column-container {
+        max-width: 1200px;
+    }
+    .column {
+        min-height: 600px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .tab-text {
+        font-size: 24px;
+    }
+    .nav-column-1,
+    .nav-column-2 {
+        gap: 35px;
+    }
+    .vertical-separator {
+        margin: 0 30px;
+        height: 48px;
+    }
+    .tab-container {
+        padding: 0 30px;
+        height: 70px;
+    }
+    
+    .two-column-container {
+        max-width: 1100px;
+    }
+    .column {
+        min-height: 550px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .main-container {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+    .header-container {
+        left: 35px;
+        width: calc(100% - 70px);
+    }
+    .tab-container {
+        left: 35px;
+        width: calc(100% - 70px);
+        height: 65px;
+        padding: 0 25px;
+        max-width: 1100px;
+    }
+    .tab-text {
+        font-size: 22px;
+    }
+    .nav-column-1,
+    .nav-column-2 {
+        gap: 30px;
+    }
+    .vertical-separator {
+        margin: 0 25px;
+        height: 44px;
+    }
+    .moving-indicator {
+        height: 3px;
+    }
+    
+    /* Stack columns vertically on smaller screens */
+    .two-column-container {
+        left: 35px;
+        width: calc(100% - 70px);
+        flex-direction: column;
+        max-width: 800px;
+        margin-top: 30px;
+        gap: 25px;
+    }
+    .column {
+        width: 100%;
+        min-height: 400px;
+    }
+    .order-place-text {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 900px) {
+    .main-container {
+        padding-left: 30px;
+        padding-right: 30px;
+        min-width: 100%;
+    }
+    .header-container {
+        left: 30px;
+        width: calc(100% - 60px);
+    }
+    .tab-container {
+        left: 30px;
+        width: calc(100% - 60px);
+        height: 60px;
+        padding: 0 20px;
+    }
+    .tab-text {
+        font-size: 20px;
+    }
+    .nav-column-1,
+    .nav-column-2 {
+        gap: 25px;
+    }
+    .vertical-separator {
+        margin: 0 20px;
+        height: 40px;
+    }
+    .moving-indicator {
+        height: 3px;
+    }
+    
+    .two-column-container {
+        left: 30px;
+        width: calc(100% - 60px);
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-right-content {
+        gap: 16px;
+    }
+    .profile-icon-circle {
+        width: 36px;
+        height: 36px;
+    }
+    .tab-container {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+    .nav-tabs {
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+    }
+    .nav-column-1,
+    .nav-column-2 {
+        width: 100%;
+        justify-content: center;
+        gap: 25px;
+    }
+    .vertical-separator {
+        width: 80%;
+        height: 3px;
+        margin: 15px 0;
+        border-radius: 3px;
+    }
+    .indicator-container {
+        display: none;
+    }
+    .tab-item::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #FFC5D9;
+        border-radius: 1.5px;
+        transform: scaleX(0);
+        transition: transform 0.2s ease;
+    }
+    .tab-item.active::after {
+        transform: scaleX(1);
+    }
+    
+    /* Two-column responsiveness */
+    .two-column-container {
+        margin-top: 25px;
+    }
+    .order-place-text {
+        font-size: 24px;
+    }
+    .column-content {
+        padding: 20px;
+    }
+    .placeholder-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    .placeholder-title {
+        font-size: 20px;
+    }
+    .placeholder-text {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .tab-text {
+        font-size: 18px;
+    }
+    .nav-column-1,
+    .nav-column-2 {
+        gap: 20px;
+    }
+    
+    .order-place-text {
+        font-size: 22px;
+    }
+    .column-content {
+        padding: 15px;
+    }
+    .placeholder-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 16px;
+    }
+    .placeholder-title {
+        font-size: 18px;
+    }
+    .placeholder-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tab-text {
+        font-size: 16px;
+    }
+    .nav-column-1,
+    .nav-column-2 {
+        gap: 15px;
+    }
+    
+    .order-place-text {
+        font-size: 20px;
+        white-space: normal;
+        text-align: center;
+        padding: 0 10px;
+    }
+    .column-content {
+        padding: 12px;
+    }
+}

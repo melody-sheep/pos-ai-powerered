@@ -13,7 +13,7 @@ Route::get('/', function () {
 
 // Role selection route (must be before auth routes)
 Route::get('/select-role', [SelectRoleController::class, 'create'])
-    ->name('select-role')
+    ->name('select-role')   
     ->middleware('guest');
 
 // Dashboard route - UPDATED to use cashier dashboard

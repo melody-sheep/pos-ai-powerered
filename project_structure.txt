@@ -71,6 +71,12 @@ pos-ai-powerered/ 📁 - Project root
 │   └── seeders/ 🌱 - DB seeders
 │       └── DatabaseSeeder.php 🌱 - DB seeder
 ├── public/ 🌍 - Public assets
+│   ├── css/ 🎨 - Stylesheets
+│   │   └── cashier/ 💰 - Cashier styles
+│   │       └── dashboard.css 🎨 - Cashier dashboard CSS
+│   ├── js/ 📜 - JavaScript
+│   │   └── cashier/ 💰 - Cashier scripts
+│   │       └── dashboard.js 📜 - Cashier dashboard JS
 │   ├── .htaccess 🔒 - Apache config
 │   ├── favicon.ico 🌟 - Favicon
 │   ├── index.php 🚀 - Entry point
@@ -87,7 +93,7 @@ pos-ai-powerered/ 📁 - Project root
 │       ├── test-login.blade.php 🧪 - Test login view
 │       ├── welcome.blade.php 👋 - Welcome view
 │       ├── cashier/ - cashier POV
-│       │   └── dashboard-cdn.blade.php 
+│       │   └── dashboard-cdn.blade.php # main html (ONLY THIS REMAINS)
 │       ├── auth/ 🔐 - Auth views
 │       │   ├── confirm-password.blade.php 🔒 - Confirm password
 │       │   ├── forgot-password.blade.php ❓ - Forgot password
@@ -108,7 +114,6 @@ pos-ai-powerered/ 📁 - Project root
 │       │   ├── nav-link.blade.php 🔗 - Nav link
 │       │   ├── primary-button.blade.php ✅ - Primary button
 │       │   ├── responsive-nav-link.blade.php 📱 - Responsive nav
-│       │   ├── secondary-button.blade.php 🔄 - Secondary button
 │       │   └── text-input.blade.php 📝 - Text input
 │       ├── layouts/ 📐 - Layouts
 │       │   ├── app.blade.php 📐 - App layout
