@@ -98,22 +98,31 @@
             </div>
 
             <!-- Right side: Notification Bell and Profile Icon - MODERN VERSION -->
-            <div class="header-right-content" x-data="{ 
-                notificationOpen: false, 
-                profileOpen: false,
-                notifications: [
-                    { id: 1, type: 'info', title: 'System Update', message: 'System is running smoothly', time: '2 hours ago', read: true, icon: 'fa-circle-info' },
-                    { id: 2, type: 'warning', title: 'Low Inventory', message: 'Bread stock is running low', time: '5 hours ago', read: false, icon: 'fa-triangle-exclamation' },
-                    { id: 3, type: 'success', title: 'New Order', message: 'Order #1234 has been placed', time: '1 day ago', read: true, icon: 'fa-circle-check' }
-                ],
-                unreadCount: 1,
-                markAllAsRead() {
-                    this.notifications.forEach(n => { 
-                        n.read = true;
-                    });
-                    this.unreadCount = 0;
-                }
-            }">
+            <div class="header-right-content" x-data="{
+    notificationOpen: false,
+    profileOpen: false,
+    showProductModal: false,
+    selectedProduct: null,
+    quantity: 1,
+    notifications: [
+        { id: 1, type: 'info', title: 'System Update', message: 'System is running smoothly', time: '2 hours ago', read: true },
+        { id: 2, type: 'warning', title: 'Low Inventory', message: 'Bread stock is running low', time: '5 hours ago', read: false },
+        { id: 3, type: 'success', title: 'New Order', message: 'Order #1234 has been placed', time: '1 day ago', read: true }
+    ],
+    unreadCount: 1,
+    addToCart(product, quantity) {
+        if (window.productManager) {
+            window.productManager.addToCart(product, quantity);
+        }
+        console.log('Added to cart:', product, 'Quantity:', quantity);
+    },
+    markAllAsRead() {
+        this.notifications.forEach(n => {
+            n.read = true;
+        });
+        this.unreadCount = 0;
+    }
+}">
                 <!-- MODERN NOTIFICATION BELL ICON -->
                 <div class="relative" x-on:click.outside="notificationOpen = false">
                     <button
@@ -416,8 +425,26 @@
             <div id="active-tab-name" class="text-lg font-bold bg-gradient-to-r from-custom-gray to-gray-600 bg-clip-text text-transparent">Breads</div>
         </div>
     </div>
-    
+
+    <!-- Include Product Modal Partial -->
+    @include('cashier.partials._product-modal')
+
     <!-- Local JavaScript -->
     <script src="{{ asset('js/cashier/dashboard.js') }}"></script>
+
+    <!-- Product Manager JS - Load this AFTER dashboard.js -->
+    <script src="{{ asset('js/cashier/product-manager.js') }}"></script>
+    <script>
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM ready, initializing Product Manager');
+            // Initialize after script loads
+            if (window.ProductManager) {
+                window.productManager = new window.ProductManager();
+            } else {
+                console.error('ProductManager not found');
+            }
+        });
+    </script>
 </body>
 </html>

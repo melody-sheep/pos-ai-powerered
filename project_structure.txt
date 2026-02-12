@@ -15,140 +15,177 @@ pos-ai-powerered/ 📁 - Project root
 ├── postcss.config.js ⚙️ - PostCSS config
 ├── tailwind.config.js 🎨 - Tailwind config
 ├── TODO.md 📝 - TODO list
+│
 ├── app/ 📁 - Application code
 │   ├── Http/ 🌐 - HTTP layer
 │   │   ├── Controllers/ 🎮 - Controllers
 │   │   │   ├── Controller.php 🎮 - Base controller
 │   │   │   ├── ProfileController.php 👤 - Profile controller
-│   │   │   └── Auth/ 🔐 - Auth controllers
-│   │   │       ├── AuthenticatedSessionController.php 🔑 - Session controller
-│   │   │       ├── ConfirmablePasswordController.php 🔒 - Password confirm
-│   │   │       ├── EmailVerificationNotificationController.php 📧 - Email verify notify
-│   │   │       ├── EmailVerificationPromptController.php 📧 - Email verify prompt
-│   │   │       ├── NewPasswordController.php 🔑 - New password
-│   │   │       ├── PasswordController.php 🔒 - Password controller
-│   │   │       ├── PasswordResetLinkController.php 🔗 - Password reset link
-│   │   │       ├── RegisteredUserController.php 👤 - User registration
-│   │   │       ├── SelectRoleController.php 👤 - Select role controller
-│   │   │       └── VerifyEmailController.php 📧 - Email verification
+│   │   │   ├── Auth/ 🔐 - Auth controllers
+│   │   │   │   ├── AuthenticatedSessionController.php 🔑
+│   │   │   │   ├── ConfirmablePasswordController.php 🔒
+│   │   │   │   ├── EmailVerificationNotificationController.php 📧
+│   │   │   │   ├── EmailVerificationPromptController.php 📧
+│   │   │   │   ├── NewPasswordController.php 🔑
+│   │   │   │   ├── PasswordController.php 🔒
+│   │   │   │   ├── PasswordResetLinkController.php 🔗
+│   │   │   │   ├── RegisteredUserController.php 👤
+│   │   │   │   ├── SelectRoleController.php 👤
+│   │   │   │   └── VerifyEmailController.php 📧
+│   │   │   └── Cashier/ 💰 - Cashier controllers (NEW)
+│   │   │       └── ProductController.php 🎮 - Product operations
+│   │   │
 │   │   └── Requests/ 📝 - Request classes
-│   │       ├── ProfileUpdateRequest.php 👤 - Profile update request
-│   │       └── Auth/ 🔐 - Auth requests
-│   │           └── LoginRequest.php 🔑 - Login request
+│   │       ├── ProfileUpdateRequest.php 👤
+│   │       ├── Auth/ 🔐
+│   │       │   └── LoginRequest.php 🔑
+│   │       └── Cashier/ 💰 - Cashier requests (NEW - Optional)
+│   │           └── AddToCartRequest.php 📝 - Add to cart validation
+│   │
 │   ├── Models/ 🗂️ - Eloquent models
 │   │   └── User.php 👤 - User model
+│   │
 │   ├── Providers/ 🔧 - Service providers
 │   │   └── AppServiceProvider.php 🔧 - App provider
+│   │
+│   ├── Services/ 🔧 - Service layer (NEW)
+│   │   └── Cashier/ 💰 - Cashier services
+│   │       └── ProductService.php 🔧 - Product business logic
+│   │
 │   └── View/ 👁️ - View components
 │       └── Components/ 🧩 - Blade components
 │           ├── AppLayout.php 📐 - App layout
 │           └── GuestLayout.php 👤 - Guest layout
+│
 ├── bootstrap/ 🚀 - Bootstrap files
-│   ├── app.php 🚀 - App bootstrap
-│   ├── providers.php 🔧 - Providers
-│   └── cache/ 💾 - Cache
-│       └── .gitignore 🚫 - Ignore cache
+│   ├── app.php 🚀
+│   ├── providers.php 🔧
+│   └── cache/ 💾
+│       └── .gitignore 🚫
+│
 ├── config/ ⚙️ - Configuration files
-│   ├── app.php ⚙️ - App config
-│   ├── auth.php 🔐 - Auth config
-│   ├── cache.php 💾 - Cache config
-│   ├── database.php 🗄️ - DB config
-│   ├── filesystems.php 📁 - Filesystem config
-│   ├── logging.php 📝 - Logging config
-│   ├── mail.php 📧 - Mail config
-│   ├── queue.php 📋 - Queue config
-│   ├── services.php 🔧 - Services config
-│   └── session.php 💾 - Session config
+│   ├── app.php ⚙️
+│   ├── auth.php 🔐
+│   ├── cache.php 💾
+│   ├── database.php 🗄️
+│   ├── filesystems.php 📁
+│   ├── logging.php 📝
+│   ├── mail.php 📧
+│   ├── queue.php 📋
+│   ├── services.php 🔧
+│   └── session.php 💾
+│
 ├── database/ 🗄️ - Database files
-│   ├── .gitignore 🚫 - Ignore DB files
-│   ├── factories/ 🏭 - Model factories
-│   │   └── UserFactory.php 👤 - User factory
-│   ├── migrations/ 🔄 - DB migrations
-│   │   ├── 0001_01_01_000000_create_users_table.php 👤 - Users table
-│   │   ├── 0001_01_01_000001_create_cache_table.php 💾 - Cache table
-│   │   ├── 0001_01_01_000002_create_jobs_table.php 📋 - Jobs table
-│   │   └── 2026_02_02_160515_add_role_to_users_table.php 👤 - Add role to users
-│   └── seeders/ 🌱 - DB seeders
-│       └── DatabaseSeeder.php 🌱 - DB seeder
+│   ├── .gitignore 🚫
+│   ├── factories/ 🏭
+│   │   └── UserFactory.php 👤
+│   ├── migrations/ 🔄
+│   │   ├── 0001_01_01_000000_create_users_table.php 👤
+│   │   ├── 0001_01_01_000001_create_cache_table.php 💾
+│   │   ├── 0001_01_01_000002_create_jobs_table.php 📋
+│   │   └── 2026_02_02_160515_add_role_to_users_table.php 👤
+│   └── seeders/ 🌱
+│       └── DatabaseSeeder.php 🌱
+│
 ├── public/ 🌍 - Public assets
-│   ├── css/ 🎨 - Stylesheets
-│   │   └── cashier/ 💰 - Cashier styles
+│   ├── css/ 🎨
+│   │   └── cashier/ 💰
 │   │       └── dashboard.css 🎨 - Cashier dashboard CSS
-│   ├── js/ 📜 - JavaScript
-│   │   └── cashier/ 💰 - Cashier scripts
+│   ├── js/ 📜
+│   │   └── cashier/ 💰
 │   │       └── dashboard.js 📜 - Cashier dashboard JS
-│   ├── .htaccess 🔒 - Apache config
-│   ├── favicon.ico 🌟 - Favicon
-│   ├── index.php 🚀 - Entry point
-│   └── robots.txt 🤖 - Robots file
+│   ├── .htaccess 🔒
+│   ├── favicon.ico 🌟
+│   ├── index.php 🚀
+│   └── robots.txt 🤖
+│
 ├── resources/ 📂 - Resources
 │   ├── css/ 🎨 - Stylesheets
-│   │   └── app.css 🎨 - App CSS
+│   │   ├── app.css 🎨 - App CSS
+│   │   └── cashier/ 💰 - Cashier styles (NEW - Optional)
+│   │       └── product-modal.css 🎨 - Modal styling
+│   │
 │   ├── js/ 📜 - JavaScript
 │   │   ├── app.js 📜 - App JS
-│   │   └── bootstrap.js 🚀 - Bootstrap JS
+│   │   ├── bootstrap.js 🚀 - Bootstrap JS
+│   │   └── cashier/ 💰 - Cashier modules (NEW)
+│   │       └── product-manager.js 📜 - Product selection & modal logic
+│   │
 │   └── views/ 👁️ - Blade templates
-│       ├── temp-logout.blade.php 👋 - Temp logout view
-│       ├── test-design.blade.php 🧪 - Test design view
-│       ├── test-login.blade.php 🧪 - Test login view
-│       ├── welcome.blade.php 👋 - Welcome view
-│       ├── cashier/ - cashier POV
-│       │   └── dashboard-cdn.blade.php # main html (ONLY THIS REMAINS)
+│       ├── temp-logout.blade.php 👋
+│       ├── test-design.blade.php 🧪
+│       ├── test-login.blade.php 🧪
+│       ├── welcome.blade.php 👋
+│       │
+│       ├── cashier/ 💰 - Cashier POV
+│       │   ├── dashboard-cdn.blade.php 📄 - Main dashboard
+│       │   └── partials/ 🧩 - Cashier partials (NEW)
+│       │       └── _product-modal.blade.php 📄 - Modal popup content
+│       │
 │       ├── auth/ 🔐 - Auth views
-│       │   ├── confirm-password.blade.php 🔒 - Confirm password
-│       │   ├── forgot-password.blade.php ❓ - Forgot password
-│       │   ├── login.blade.php 🔑 - Login view
-│       │   ├── register.blade.php 📝 - Register view
-│       │   ├── reset-password.blade.php 🔄 - Reset password
-│       │   ├── select-role.blade.php 👤 - Select role view
-│       │   └── verify-email.blade.php 📧 - Verify email
-│       ├── components/ 🧩 - View components
-│       │   ├── application-logo.blade.php 🌟 - App logo
-│       │   ├── auth-session-status.blade.php 🔐 - Auth status
-│       │   ├── danger-button.blade.php ⚠️ - Danger button
-│       │   ├── dropdown-link.blade.php 📋 - Dropdown link
-│       │   ├── dropdown.blade.php 📋 - Dropdown
-│       │   ├── input-error.blade.php ❌ - Input error
-│       │   ├── input-label.blade.php 🏷️ - Input label
-│       │   ├── modal.blade.php 📱 - Modal
-│       │   ├── nav-link.blade.php 🔗 - Nav link
-│       │   ├── primary-button.blade.php ✅ - Primary button
-│       │   ├── responsive-nav-link.blade.php 📱 - Responsive nav
-│       │   └── text-input.blade.php 📝 - Text input
+│       │   ├── confirm-password.blade.php 🔒
+│       │   ├── forgot-password.blade.php ❓
+│       │   ├── login.blade.php 🔑
+│       │   ├── register.blade.php 📝
+│       │   ├── reset-password.blade.php 🔄
+│       │   ├── select-role.blade.php 👤
+│       │   └── verify-email.blade.php 📧
+│       │
+│       ├── components/ 🧩 - Blade components
+│       │   ├── application-logo.blade.php 🌟
+│       │   ├── auth-session-status.blade.php 🔐
+│       │   ├── danger-button.blade.php ⚠️
+│       │   ├── dropdown-link.blade.php 📋
+│       │   ├── dropdown.blade.php 📋
+│       │   ├── input-error.blade.php ❌
+│       │   ├── input-label.blade.php 🏷️
+│       │   ├── modal.blade.php 📱
+│       │   ├── nav-link.blade.php 🔗
+│       │   ├── primary-button.blade.php ✅
+│       │   ├── responsive-nav-link.blade.php 📱
+│       │   ├── text-input.blade.php 📝
+│       │   └── cashier/ 💰 - Cashier components (NEW - Optional)
+│       │       └── product-card.blade.php 🧩 - Product card component
+│       │
 │       ├── layouts/ 📐 - Layouts
-│       │   ├── app.blade.php 📐 - App layout
-│       │   ├── guest-layout.blade.php 👤 - Guest layout
-│       │   ├── guest.blade.php 👤 - Guest layout
-│       │   └── navigation.blade.php 🧭 - Navigation
+│       │   ├── app.blade.php 📐
+│       │   ├── guest-layout.blade.php 👤
+│       │   ├── guest.blade.php 👤
+│       │   └── navigation.blade.php 🧭
+│       │
 │       └── profile/ 👤 - Profile views
-│           ├── edit.blade.php ✏️ - Edit profile
-│           └── partials/ 🧩 - Profile partials
-│               ├── delete-user-form.blade.php 🗑️ - Delete user form
-│               ├── update-password-form.blade.php 🔒 - Update password
-│               └── update-profile-information-form.blade.php 👤 - Update profile
+│           ├── edit.blade.php ✏️
+│           └── partials/ 🧩
+│               ├── delete-user-form.blade.php 🗑️
+│               ├── update-password-form.blade.php 🔒
+│               └── update-profile-information-form.blade.php 👤
+│
 ├── routes/ 🛤️ - Route definitions
 │   ├── auth.php 🔐 - Auth routes
 │   ├── console.php 💻 - Console routes
-│   └── web.php 🌐 - Web routes
+│   ├── web.php 🌐 - Web routes
+│   └── cashier.php 🛤️ - Cashier routes (NEW)
+│
 ├── storage/ 💾 - Storage
-│   ├── app/ 📂 - App storage
-│   │   └── .gitignore 🚫 - Ignore app storage
-│   └── framework/ 🏗️ - Framework storage
-│       ├── .gitignore 🚫 - Ignore framework
-│       ├── cache/ 💾 - Cache storage
-│       │   └── .gitignore 🚫 - Ignore cache
-│       ├── sessions/ 💾 - Session storage
-│       │   └── .gitignore 🚫 - Ignore sessions
-│       ├── testing/ 🧪 - Testing storage
-│       │   └── .gitignore 🚫 - Ignore testing
-│       ├── views/ 👁️ - Compiled views
-│       │   └── .gitignore 🚫 - Ignore views
-│       └── logs/ 📝 - Log files
-│           └── .gitignore 🚫 - Ignore logs
+│   ├── app/ 📂
+│   │   └── .gitignore 🚫
+│   └── framework/ 🏗️
+│       ├── .gitignore 🚫
+│       ├── cache/ 💾
+│       │   └── .gitignore 🚫
+│       ├── sessions/ 💾
+│       │   └── .gitignore 🚫
+│       ├── testing/ 🧪
+│       │   └── .gitignore 🚫
+│       ├── views/ 👁️
+│       │   └── .gitignore 🚫
+│       └── logs/ 📝
+│           └── .gitignore 🚫
+│
 └── tests/ 🧪 - Test files
-    ├── Pest.php 🧪 - Pest framework
-    ├── TestCase.php 🧪 - Base test case
-    ├── Feature/ 🧪 - Feature tests
-    │   └── ExampleTest.php 🧪 - Example feature test
-    └── Unit/ 🧪 - Unit tests
-        └── ExampleTest.php 🧪 - Example unit test
+    ├── Pest.php 🧪
+    ├── TestCase.php 🧪
+    ├── Feature/ 🧪
+    │   └── ExampleTest.php 🧪
+    └── Unit/ 🧪
+        └── ExampleTest.php 🧪

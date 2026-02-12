@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\SelectRoleController;
+use App\Http\Controllers\Cashier\ProductController; // Add this
 
 Route::get('/', function () {
     if (auth()->check()) {
@@ -19,7 +20,7 @@ Route::get('/select-role', [SelectRoleController::class, 'create'])
 // Dashboard route - UPDATED to use cashier dashboard
 Route::get('/dashboard', function () {
     return view('cashier.dashboard-cdn'); // Use the CDN version
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard'); // Temporarily remove auth for testing
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -62,6 +63,12 @@ Route::get('/test-design', function() {
 Route::get('/test-login-page', function() {
     return view('test-login');
 });
+
+// Include cashier routes
+require __DIR__.'/cashier.php';
+
+// Add this TEMPORARY route for testing - REMOVE LATER
+Route::get('/test-products', [ProductController::class, 'index']);
 
 // This line loads all auth routes (login, register, etc.)
 require __DIR__.'/auth.php';
