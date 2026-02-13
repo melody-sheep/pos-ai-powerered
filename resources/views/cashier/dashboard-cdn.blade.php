@@ -75,6 +75,87 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Product Selection Section Styles - Fixed with regular CSS */
+        .product-selection-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            padding: 2rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .selection-icon {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(255, 197, 217, 0.2), transparent);
+            border-radius: 1rem;
+        }
+
+        .selection-icon svg {
+            width: 5rem;
+            height: 5rem;
+            color: #484545;
+        }
+
+        .selection-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.75rem;
+        }
+
+        .selection-subtext {
+            color: #6B7280;
+            margin-bottom: 2rem;
+            max-width: 24rem;
+            font-size: 1rem;
+        }
+
+        .add-product-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(to right, #FFC5D9, #FFB0C8);
+            color: white;
+            font-weight: 500;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: scale(1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-product-btn:hover {
+            background: #FF0059;
+            box-shadow: 0 0 20px rgba(255, 0, 89, 0.2);
+            transform: scale(1.05);
+        }
+
+        .add-product-btn:focus {
+            outline: none;
+            ring: 2px solid #FFC5D9;
+            ring-offset: 2px;
+        }
+
+        .add-product-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Ensure column content centers properly */
+        .column-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
@@ -382,25 +463,45 @@
             </div>
         </div>
         
-        <!-- TWO-COLUMN LAYOUT (unchanged) -->
+        <!-- TWO-COLUMN LAYOUT -->
         <div class="two-column-container">
+            <!-- PRODUCT SELECTION COLUMN -->
             <div class="column column-products">
                 <div class="column-content">
-                    <div class="placeholder-content">
-                        <div class="placeholder-icon">
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                    <!-- Product Selection Section -->
+                    <div class="product-selection-section">
+                        <!-- Icon -->
+                        <div class="selection-icon">
+                            <svg class="w-16 h-16 mx-auto text-custom-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                             </svg>
                         </div>
-                        <h3 class="placeholder-title">Product Selection Area</h3>
-                        <p class="placeholder-text">
-                            Browse and select items from your menu. 
-                            Drag items or click to add to the order.
+                        
+                        <!-- Text (Title) -->
+                        <h3 class="selection-title">
+                            Product Selection
+                        </h3>
+                        
+                        <!-- Sub text -->
+                        <p class="selection-subtext">
+                            Click the button below to add new products to your inventory
                         </p>
+                        
+                        <!-- Add Product Button -->
+                        <button 
+                            @click="showProductModal = true"
+                            class="add-product-btn"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            <span>Add Product</span>
+                        </button>
                     </div>
                 </div>
             </div>
             
+            <!-- ORDERS COLUMN (unchanged) -->
             <div class="column column-orders">
                 <div class="column-content">
                     <div class="placeholder-content">
@@ -435,15 +536,10 @@
     <!-- Product Manager JS - Load this AFTER dashboard.js -->
     <script src="{{ asset('js/cashier/product-manager.js') }}"></script>
     <script>
-        // Wait for DOM to be ready
+        // Simple initialization - no product loading
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM ready, initializing Product Manager');
-            // Initialize after script loads
-            if (window.ProductManager) {
-                window.productManager = new window.ProductManager();
-            } else {
-                console.error('ProductManager not found');
-            }
+            console.log('Dashboard ready');
+            // Don't try to initialize ProductManager here since it's now simplified
         });
     </script>
 </body>

@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 
 /* Cashier specific styles */
+@import 'cashier/product-modal.css';
 .cashier-container {
     width: 1440px;
     height: 1024px;
