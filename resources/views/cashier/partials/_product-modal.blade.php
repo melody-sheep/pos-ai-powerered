@@ -24,13 +24,14 @@
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
             x-transition:leave-end="opacity-0 translate-y-4 scale-95"
-            class="relative bg-white rounded-lg shadow-xl max-w-md w-full"
+            class="relative bg-white rounded-lg shadow-xl"
+            style="width: 600px; height: 600px;"
             @click.away="showProductModal = false"
         >
             <!-- Close Button (Top Right) -->
             <button 
                 @click="showProductModal = false"
-                class="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+                class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors z-10"
             >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -38,8 +39,8 @@
             </button>
 
             <!-- Modal Content -->
-            <div class="p-6 text-center">
-                <p class="text-gray-700">add product details here</p>
+            <div class="h-full w-full flex items-center justify-center p-6">
+                <p class="text-gray-700 text-center">add product details here</p>
             </div>
         </div>
     </div>

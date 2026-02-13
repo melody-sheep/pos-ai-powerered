@@ -156,9 +156,43 @@
             width: 100%;
             height: 100%;
         }
-    </style>
+</style>
+    
+    <script>
+        // Global cashier data function for Alpine.js
+        function cashierData() {
+            return {
+                notificationOpen: false,
+                profileOpen: false,
+                showProductModal: false,
+                selectedProduct: null,
+                quantity: 1,
+                notifications: [
+                    { id: 1, type: 'info', title: 'System Update', message: 'System is running smoothly', time: '2 hours ago', read: true },
+                    { id: 2, type: 'warning', title: 'Low Inventory', message: 'Bread stock is running low', time: '5 hours ago', read: false },
+                    { id: 3, type: 'success', title: 'New Order', message: 'Order #1234 has been placed', time: '1 day ago', read: true }
+                ],
+                unreadCount: 1,
+                init() {
+                    console.log('Cashier data initialized');
+                },
+                addToCart(product, quantity) {
+                    if (window.productManager) {
+                        window.productManager.addToCart(product, quantity);
+                    }
+                    console.log('Added to cart:', product, 'Quantity:', quantity);
+                },
+                markAllAsRead() {
+                    this.notifications.forEach(n => {
+                        n.read = true;
+                    });
+                    this.unreadCount = 0;
+                }
+            };
+        }
+    </script>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
+<body class="bg-gray-50 font-sans antialiased" x-data="cashierData()" x-init="init()">
     <!-- Main Container -->
     <div class="main-container">
         <!-- Header Section -->
@@ -179,31 +213,7 @@
             </div>
 
             <!-- Right side: Notification Bell and Profile Icon - MODERN VERSION -->
-            <div class="header-right-content" x-data="{
-    notificationOpen: false,
-    profileOpen: false,
-    showProductModal: false,
-    selectedProduct: null,
-    quantity: 1,
-    notifications: [
-        { id: 1, type: 'info', title: 'System Update', message: 'System is running smoothly', time: '2 hours ago', read: true },
-        { id: 2, type: 'warning', title: 'Low Inventory', message: 'Bread stock is running low', time: '5 hours ago', read: false },
-        { id: 3, type: 'success', title: 'New Order', message: 'Order #1234 has been placed', time: '1 day ago', read: true }
-    ],
-    unreadCount: 1,
-    addToCart(product, quantity) {
-        if (window.productManager) {
-            window.productManager.addToCart(product, quantity);
-        }
-        console.log('Added to cart:', product, 'Quantity:', quantity);
-    },
-    markAllAsRead() {
-        this.notifications.forEach(n => {
-            n.read = true;
-        });
-        this.unreadCount = 0;
-    }
-}">
+            <div class="header-right-content" x-data="cashierData()" x-init="init()">
                 <!-- MODERN NOTIFICATION BELL ICON -->
                 <div class="relative" x-on:click.outside="notificationOpen = false">
                     <button
