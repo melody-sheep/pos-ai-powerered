@@ -28,12 +28,13 @@
             style="width: 600px; height: 600px;"
             @click.away="showProductModal = false"
         >
-            <!-- Close Button (Top Right) -->
+            <!-- Close Button (Bigger with #FF0059 hover) -->
             <button 
                 @click="showProductModal = false"
-                class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors z-10"
+                class="absolute top-4 right-4 text-gray-400 hover:text-[#FF0059] transition-colors duration-200 z-10"
+                style="width: 40px; height: 40px;"
             >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
