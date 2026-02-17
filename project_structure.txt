@@ -10,11 +10,9 @@ pos-ai-powerered/ 📁 - Project root
 ├── phpunit.xml 🧪 - PHPUnit config
 ├── project_structure.txt 📄 - Project structure
 ├── README.md 📖 - Readme file
-├── test-connection.php 🔍 - DB test script
 ├── vite.config.js ⚡ - Vite config
 ├── postcss.config.js ⚙️ - PostCSS config
 ├── tailwind.config.js 🎨 - Tailwind config
-├── TODO.md 📝 - TODO list
 │
 ├── app/ 📁 - Application code
 │   ├── Http/ 🌐 - HTTP layer
@@ -32,18 +30,23 @@ pos-ai-powerered/ 📁 - Project root
 │   │   │   │   ├── RegisteredUserController.php 👤
 │   │   │   │   ├── SelectRoleController.php 👤
 │   │   │   │   └── VerifyEmailController.php 📧
-│   │   │   └── Cashier/ 💰 - Cashier controllers
-│   │   │       └── ProductController.php 🎮 - Product operations
+│   │   │   ├── Cashier/ 💰 - Cashier controllers
+│   │   │   │   └── ProductController.php 🎮 - Product operations
+│   │   │   └── Api/ 🌐 - API controllers
+│   │   │       └── GalleryController.php 🖼️ - Gallery API controller
 │   │   │
 │   │   └── Requests/ 📝 - Request classes
 │   │       ├── ProfileUpdateRequest.php 👤
 │   │       ├── Auth/ 🔐
 │   │       │   └── LoginRequest.php 🔑
 │   │       └── Cashier/ 💰 - Cashier requests
-│   │           └── AddToCartRequest.php 📝 - Add to cart validation
+│   │           ├── AddToCartRequest.php 📝 - Add to cart validation
+│   │           └── StoreProductRequest.php 📝 - Store product validation
 │   │
 │   ├── Models/ 🗂️ - Eloquent models
-│   │   └── User.php 👤 - User model
+│   │   ├── User.php 👤 - User model
+│   │   ├── Product.php 📦 - Product model
+│   │   └── GalleryImage.php 🖼️ - Gallery image model
 │   │
 │   ├── Providers/ 🔧 - Service providers
 │   │   └── AppServiceProvider.php 🔧 - App provider
@@ -83,9 +86,12 @@ pos-ai-powerered/ 📁 - Project root
 │   │   ├── 0001_01_01_000000_create_users_table.php 👤
 │   │   ├── 0001_01_01_000001_create_cache_table.php 💾
 │   │   ├── 0001_01_01_000002_create_jobs_table.php 📋
-│   │   └── 2026_02_02_160515_add_role_to_users_table.php 👤
+│   │   ├── 2026_02_02_160515_add_role_to_users_table.php 👤
+│   │   ├── 2026_02_17_080458_create_products_table.php 📦
+│   │   └── 2026_02_17_093355_create_gallery_images_table.php 🖼️
 │   └── seeders/ 🌱
-│       └── DatabaseSeeder.php 🌱
+│       ├── DatabaseSeeder.php 🌱
+│       └── ProductSeeder.php 📦
 │
 ├── public/ 🌍 - Public assets
 │   ├── css/ 🎨
@@ -94,7 +100,7 @@ pos-ai-powerered/ 📁 - Project root
 │   ├── js/ 📜
 │   │   └── cashier/ 💰
 │   │       ├── dashboard.js 📜 - Cashier dashboard JS
-│   │       └── product-manager.js.backup 📜 - Backup of product manager
+│   │       └── product-manager.js 📜 - Product manager JS
 │   ├── .htaccess 🔒
 │   ├── favicon.ico 🌟
 │   ├── index.php 🚀
@@ -104,13 +110,14 @@ pos-ai-powerered/ 📁 - Project root
 │   ├── css/ 🎨 - Stylesheets
 │   │   ├── app.css 🎨 - App CSS
 │   │   └── cashier/ 💰 - Cashier styles
-│   │       └── product-modal.css 🎨 - Modal styling (UPDATED)
+│   │       └── product-modal.css 🎨 - Modal styling
 │   │
 │   ├── js/ 📜 - JavaScript
 │   │   ├── app.js 📜 - App JS
 │   │   ├── bootstrap.js 🚀 - Bootstrap JS
 │   │   └── cashier/ 💰 - Cashier modules
-│   │       └── product-manager.js 📜 - Product selection & modal logic (UPDATED)
+│   │       ├── product-manager.js 📜 - Product selection & modal logic
+│   │       └── product-manager.js.backup 📜 - Backup of product manager
 │   │
 │   └── views/ 👁️ - Blade templates
 │       ├── temp-logout.blade.php 👋
@@ -119,10 +126,13 @@ pos-ai-powerered/ 📁 - Project root
 │       ├── welcome.blade.php 👋
 │       │
 │       ├── cashier/ 💰 - Cashier POV
-│       │   ├── dashboard-cdn.blade.php 📄 - Main dashboard (UPDATED)
+│       │   ├── dashboard-cdn.blade.php 📄 - Main dashboard
+│       │   ├── dashboard-cdn.blade.php.backup 📄 - Dashboard backup
+│       │   ├── components/ 🧩 - Cashier components (empty)
 │       │   └── partials/ 🧩 - Cashier partials
-│       │       ├── _add-product-modal.blade.php 📄 - Add product modal (NEW)
-│       │       └── _product-modal.blade.php 📄 - Legacy modal (backup/symlink)
+│       │       ├── _add-product-modal.blade.php 📄 - Add product modal
+│       │       ├── _product-modal.blade.php 📄 - Legacy modal
+│       │       └── _image-gallery-modal.blade.php 🖼️ - Image gallery modal
 │       │
 │       ├── auth/ 🔐 - Auth views
 │       │   ├── confirm-password.blade.php 🔒
@@ -141,10 +151,11 @@ pos-ai-powerered/ 📁 - Project root
 │       │   ├── dropdown.blade.php 📋
 │       │   ├── input-error.blade.php ❌
 │       │   ├── input-label.blade.php 🏷️
-│       │   ├── modal.blade.php 📱 - Modal component (USED)
+│       │   ├── modal.blade.php 📱 - Modal component
 │       │   ├── nav-link.blade.php 🔗
 │       │   ├── primary-button.blade.php ✅
 │       │   ├── responsive-nav-link.blade.php 📱
+│       │   ├── secondary-button.blade.php ➡️
 │       │   ├── text-input.blade.php 📝
 │       │   └── cashier/ 💰 - Cashier components
 │       │       └── product-card.blade.php 🧩 - Product card component
@@ -163,6 +174,7 @@ pos-ai-powerered/ 📁 - Project root
 │               └── update-profile-information-form.blade.php 👤
 │
 ├── routes/ 🛤️ - Route definitions
+│   ├── api.php 🌐 - API routes
 │   ├── auth.php 🔐 - Auth routes
 │   ├── console.php 💻 - Console routes
 │   ├── web.php 🌐 - Web routes

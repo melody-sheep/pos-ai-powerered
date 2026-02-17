@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>POS AI-POWERED - Cashier</title>
     
     <!-- Tailwind CSS CDN -->
@@ -552,5 +553,8 @@
             // Don't try to initialize ProductManager here since it's now simplified
         });
     </script>
+
+    <!-- Include Gallery Modal -->
+    @include('cashier.partials._image-gallery-modal')
 </body>
 </html>

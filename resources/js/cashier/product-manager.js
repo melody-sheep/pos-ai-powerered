@@ -1,9 +1,9 @@
- 
 // Product Manager - With Add Product Modal functionality
 class ProductManager {
     constructor() {
         console.log('Product Manager initialized');
         this.initModalTriggers();
+        this.currentCategory = 'breads'; // Default category
     }
 
     initModalTriggers() {
@@ -22,6 +22,13 @@ class ProductManager {
                 this.handleAddProduct();
             });
         }
+
+        // Listen for tab clicks to update current category
+        document.querySelectorAll('[data-tab]').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                this.currentCategory = e.currentTarget.dataset.tab;
+            });
+        });
     }
 
     openAddProductModal() {
@@ -34,6 +41,50 @@ class ProductManager {
         const alpineRoot = document.querySelector('[x-data]');
         if (alpineRoot && alpineRoot.__x) {
             alpineRoot.__x.$data.showProductModal = true;
+        }
+    }
+
+    async refreshProducts() {
+        console.log('Refreshing products for category:', this.currentCategory);
+        
+        try {
+            const response = await fetch(`/cashier/products?category=${this.currentCategory}`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
+            }
+            
+            const data = await response.json();
+            
+            // Dispatch event with updated products
+            window.dispatchEvent(new CustomEvent('products-updated', { 
+                detail: data 
+            }));
+            
+            // Update UI if needed
+            this.updateProductsDisplay(data.products);
+            
+        } catch (error) {
+            console.error('Error refreshing products:', error);
+        }
+    }
+
+    updateProductsDisplay(products) {
+        // Find the products container
+        const productsContainer = document.querySelector('.product-selection-section');
+        if (!productsContainer) return;
+
+        if (products && products.length > 0) {
+            // Products exist - you can update your product grid here
+            console.log('Products updated:', products);
+        } else {
+            // No products - show empty state
+            console.log('No products found');
         }
     }
 
