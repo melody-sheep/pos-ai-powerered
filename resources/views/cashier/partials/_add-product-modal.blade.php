@@ -165,10 +165,26 @@
                         this.resetForm();
                         $dispatch('close-modal', 'add-product-modal');
                         
-                        // Trigger product list refresh
+                        // IMPORTANT: Dispatch custom events to refresh products
+                        console.log('Dispatching product-added event for category:', createdProduct?.category || this.category);
+                        
+                        // Dispatch product-added event
+                        window.dispatchEvent(new CustomEvent('product-added', { 
+                            detail: { 
+                                product: createdProduct,
+                                category: createdProduct?.category || this.category 
+                            }
+                        }));
+                        
+                        // Also trigger a manual refresh if productManager exists
                         if (window.productManager) {
+                            console.log('Manually refreshing products after add');
                             window.productManager.refreshProducts();
                         }
+                        
+                        // Show success message in notification
+                        this.showNotification('Product added successfully!', 'success');
+                        
                     }, 1500);
                     
                 } catch (error) {

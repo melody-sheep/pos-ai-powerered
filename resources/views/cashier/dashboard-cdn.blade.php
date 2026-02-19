@@ -77,7 +77,7 @@
             scrollbar-width: none;
         }
 
-        /* Product Selection Section Styles - Fixed with regular CSS */
+        /* Product Selection Section Styles - FIXED */
         .product-selection-section {
             display: flex;
             flex-direction: column;
@@ -87,7 +87,8 @@
             padding: 2rem;
             text-align: center;
             width: 100%;
-            flex: 1;
+            height: 100%;
+            margin: 0;
         }
 
         .selection-icon {
@@ -95,6 +96,9 @@
             padding: 1rem;
             background: linear-gradient(135deg, rgba(255, 197, 217, 0.2), transparent);
             border-radius: 1rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
         .selection-icon svg {
@@ -108,6 +112,8 @@
             font-weight: 700;
             color: #111827;
             margin-bottom: 0.75rem;
+            width: 100%;
+            text-align: center;
         }
 
         .selection-subtext {
@@ -115,11 +121,14 @@
             margin-bottom: 2rem;
             max-width: 24rem;
             font-size: 1rem;
+            width: 100%;
+            text-align: center;
         }
 
         .add-product-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
             background: linear-gradient(to right, #FFC5D9, #FFB0C8);
@@ -150,15 +159,41 @@
             height: 1.25rem;
         }
 
-        /* Ensure column content centers properly */
+        /* Column content - FIXED for product grid */
         .column-content {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
             width: 100%;
             height: 100%;
+            padding: 35px;
+            overflow-y: auto;
         }
-</style>
+
+        /* Products grid - FIXED alignment */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            width: 100%;
+            align-items: start;
+            justify-items: start;
+        }
+
+        /* Product card - ensure left alignment */
+        .product-card {
+            width: 100%;
+            justify-self: start;
+        }
+
+        /* Add product frame - left aligned */
+        .add-product-frame {
+            width: 100%;
+            max-width: 180px;
+            justify-self: start;
+        }
+    </style>
     
     <script>
         // Global cashier data function for Alpine.js
