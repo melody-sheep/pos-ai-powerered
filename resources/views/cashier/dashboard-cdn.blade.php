@@ -36,31 +36,6 @@
                             'warning': '#F59E0B',
                             'success': '#10B981'
                         }
-                    },
-                    animation: {
-                        'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse-gentle': 'pulse-gentle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'slide-in': 'slide-in 0.2s ease-out',
-                        'scale-in': 'scale-in 0.15s ease-out'
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-3px)' }
-                        },
-                        'pulse-gentle': {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0.85' }
-                        },
-                        'slide-in': {
-                            '0%': { transform: 'translateX(100%)' },
-                            '100%': { transform: 'translateX(0)' }
-                        },
-                        'scale-in': {
-                            '0%': { transform: 'scale(0.95)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' }
-                        }
                     }
                 }
             }
@@ -75,88 +50,6 @@
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
-        }
-
-        /* Product Selection Section Styles - FIXED */
-        .product-selection-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-            padding: 2rem;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-        }
-
-        .selection-icon {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(255, 197, 217, 0.2), transparent);
-            border-radius: 1rem;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .selection-icon svg {
-            width: 5rem;
-            height: 5rem;
-            color: #484545;
-        }
-
-        .selection-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 0.75rem;
-            width: 100%;
-            text-align: center;
-        }
-
-        .selection-subtext {
-            color: #6B7280;
-            margin-bottom: 2rem;
-            max-width: 24rem;
-            font-size: 1rem;
-            width: 100%;
-            text-align: center;
-        }
-
-        .add-product-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(to right, #FFC5D9, #FFB0C8);
-            color: white;
-            font-weight: 500;
-            border-radius: 0.75rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            transform: scale(1);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .add-product-btn:hover {
-            background: #FF0059;
-            box-shadow: 0 0 20px rgba(255, 0, 89, 0.2);
-            transform: scale(1.05);
-        }
-
-        .add-product-btn:focus {
-            outline: none;
-            ring: 2px solid #FFC5D9;
-            ring-offset: 2px;
-        }
-
-        .add-product-btn svg {
-            width: 1.25rem;
-            height: 1.25rem;
         }
 
         /* Column content - FIXED for product grid */
@@ -192,6 +85,104 @@
             width: 100%;
             max-width: 180px;
             justify-self: start;
+        }
+
+        /* Empty state container - maintains column height */
+        .product-selection-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px; /* REDUCED from 500px */
+            padding: 1.5rem; /* REDUCED padding */
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            grid-column: 1 / -1;
+        }
+
+        .selection-icon {
+            margin-bottom: 1rem; /* REDUCED margin */
+            padding: 0.75rem; /* REDUCED padding */
+            background: linear-gradient(135deg, rgba(255, 197, 217, 0.2), transparent);
+            border-radius: 1rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .selection-icon svg {
+            width: 4rem; /* REDUCED from 5rem */
+            height: 4rem; /* REDUCED from 5rem */
+            color: #484545;
+        }
+
+        .selection-title {
+            font-size: 1.25rem; /* REDUCED from 1.5rem */
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem; /* REDUCED margin */
+            width: 100%;
+            text-align: center;
+        }
+
+        .selection-subtext {
+            color: #6B7280;
+            margin-bottom: 1.5rem; /* REDUCED from 2rem */
+            max-width: 24rem;
+            font-size: 0.875rem; /* REDUCED from 1rem */
+            width: 100%;
+            text-align: center;
+        }
+
+        .add-product-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem; /* REDUCED padding */
+            background: linear-gradient(to right, #FFC5D9, #FFB0C8);
+            color: white;
+            font-weight: 500;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem; /* ADDED font size */
+        }
+
+        .add-product-btn:hover {
+            background: #FF0059;
+        }
+
+        .add-product-btn svg {
+            width: 1.125rem; /* REDUCED from 1.25rem */
+            height: 1.125rem; /* REDUCED from 1.25rem */
+        }
+
+        /* Two-column container - REDUCED HEIGHT */
+        .two-column-container {
+            position: relative;
+            left: 40px;
+            width: calc(100% - 80px);
+            max-width: 1361px;
+            margin-top: 40px;
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+            height: 450px; /* REDUCED from 600px */
+        }
+dashboard.css
+        /* Each column - REDUCED HEIGHT */
+        .column {
+            flex: 1;
+            min-width: 0;
+            height: 450px; /* REDUCED from 600px */
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
     </style>
     
@@ -236,41 +227,37 @@
         <div class="header-container">
             <!-- Left side: Logo and Title -->
             <div class="header-left-content group">
-                <!-- Triangle Logo with modern animation -->
-                <div class="logo-responsive transform transition-all duration-300 group-hover:scale-105">
+                <!-- Triangle Logo -->
+                <div class="logo-responsive">
                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                        <polygon points="50,15 85,75 15,75" fill="none" stroke="#484545" stroke-width="6" class="logo-triangle transition-all duration-300 group-hover:stroke-[#2D2A2A]" />
+                        <polygon points="50,15 85,75 15,75" fill="none" stroke="#484545" stroke-width="6" class="logo-triangle" />
                     </svg>
                 </div>
 
-                <!-- Header Text with gradient effect -->
+                <!-- Header Text -->
                 <h1 class="title-responsive bg-gradient-to-r from-custom-gray to-gray-600 bg-clip-text text-transparent">
                     Cashier Bakery & Cafe POS
                 </h1>
             </div>
 
-            <!-- Right side: Notification Bell and Profile Icon - MODERN VERSION -->
+            <!-- Right side: Notification Bell and Profile Icon -->
             <div class="header-right-content" x-data="cashierData()" x-init="init()">
                 <!-- MODERN NOTIFICATION BELL ICON -->
                 <div class="relative" x-on:click.outside="notificationOpen = false">
                     <button
                         x-on:click="notificationOpen = !notificationOpen"
-                        class="relative p-3 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 group"
+                        class="relative p-3 rounded-xl bg-white shadow-sm hover:shadow-md"
                         :class="{ 'ring-2 ring-pink-border ring-opacity-50': notificationOpen }"
                         aria-label="Notifications"
                     >
-                        <!-- Bell Icon with subtle animation -->
-                        <i class="fas fa-bell text-2xl text-custom-gray transition-all duration-300 group-hover:scale-110 group-hover:text-gray-900" 
-                           :class="{ 'animate-pulse-gentle': unreadCount > 0 }"></i>
+                        <!-- Bell Icon -->
+                        <i class="fas fa-bell text-2xl text-custom-gray"></i>
                         
-                        <!-- Modern Notification Badge with animation -->
+                        <!-- Modern Notification Badge -->
                         <span 
                             x-show="unreadCount > 0"
-                            x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="opacity-0 scale-50"
-                            x-transition:enter-end="opacity-100 scale-100"
                             x-text="unreadCount"
-                            class="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs font-bold rounded-full min-w-[20px] h-5 px-1 flex items-center justify-center shadow-lg animate-pulse-gentle"
+                            class="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs font-bold rounded-full min-w-[20px] h-5 px-1 flex items-center justify-center shadow-lg"
                         ></span>
                         
                         <!-- Active indicator dot -->
@@ -278,7 +265,7 @@
                               class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-pink-border rounded-full"></span>
                     </button>
                     
-                    <!-- MODERN NOTIFICATION DROPDOWN - Glass morphism style -->
+                    <!-- MODERN NOTIFICATION DROPDOWN -->
                     <div 
                         x-show="notificationOpen"
                         x-transition:enter="transition ease-out duration-200"
@@ -292,7 +279,7 @@
                         @click.away="notificationOpen = false"
                     >
                         <div class="py-2">
-                            <!-- Notification Header with modern design -->
+                            <!-- Notification Header -->
                             <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-900">Notifications</h3>
@@ -305,7 +292,7 @@
                                     <button 
                                         x-show="unreadCount > 0"
                                         @click="markAllAsRead"
-                                        class="text-xs text-gray-500 hover:text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                                        class="text-xs text-gray-500 hover:text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-50"
                                     >
                                         Mark all as read
                                     </button>
@@ -315,11 +302,11 @@
                                 </div>
                             </div>
                             
-                            <!-- Notification Items with modern styling -->
+                            <!-- Notification Items -->
                             <div class="max-h-[400px] overflow-y-auto hide-scrollbar">
                                 <template x-for="notification in notifications" :key="notification.id">
                                     <div 
-                                        class="px-5 py-4 hover:bg-gray-50/80 border-b border-gray-50 cursor-pointer transition-all duration-200"
+                                        class="px-5 py-4 hover:bg-gray-50/80 border-b border-gray-50 cursor-pointer"
                                         :class="{ 
                                             'bg-gradient-to-r from-blue-50/30 to-transparent': !notification.read,
                                             'opacity-75': notification.read
@@ -332,7 +319,7 @@
                                         "
                                     >
                                         <div class="flex items-start space-x-3">
-                                            <!-- Modern Notification Icon with gradient -->
+                                            <!-- Notification Icon -->
                                             <div class="flex-shrink-0">
                                                 <div 
                                                     class="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm"
@@ -360,15 +347,15 @@
                                                 <p class="text-xs text-gray-600 mt-0.5 line-clamp-2" x-text="notification.message"></p>
                                             </div>
                                             
-                                            <!-- Modern Unread Dot -->
+                                            <!-- Unread Dot -->
                                             <div x-show="!notification.read" class="flex-shrink-0">
-                                                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </template>
                                 
-                                <!-- Modern Empty State -->
+                                <!-- Empty State -->
                                 <div x-show="notifications.length === 0" class="px-5 py-12 text-center">
                                     <div class="w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                                         <i class="fas fa-bell text-3xl text-gray-300"></i>
@@ -378,11 +365,11 @@
                                 </div>
                             </div>
                             
-                            <!-- Modern Notification Footer -->
+                            <!-- Notification Footer -->
                             <div class="px-5 py-4 border-t border-gray-100 bg-gray-50/50">
                                 <a href="#" class="text-sm text-pink-border hover:text-[#FFB0C8] font-medium flex items-center justify-center space-x-2 group">
                                     <span>View all notifications</span>
-                                    <i class="fas fa-arrow-right text-xs transition-transform duration-200 group-hover:translate-x-1"></i>
+                                    <i class="fas fa-arrow-right text-xs"></i>
                                 </a>
                             </div>
                         </div>
@@ -393,16 +380,16 @@
                 <div class="relative" x-on:click.outside="profileOpen = false">
                     <button
                         x-on:click="profileOpen = !profileOpen"
-                        class="relative transition-all duration-300 group"
+                        class="relative"
                         :class="{ 'ring-2 ring-pink-border ring-opacity-50 rounded-2xl': profileOpen }"
                         aria-label="User Profile"
                     >
-                        <div class="profile-icon-circle group-hover:shadow-lg group-hover:border-pink-border transition-all duration-300">
-                            <i class="fas fa-user text-xl text-custom-gray group-hover:text-gray-900 transition-all duration-300 group-hover:scale-110"></i>
+                        <div class="profile-icon-circle">
+                            <i class="fas fa-user text-xl text-custom-gray"></i>
                         </div>
                     </button>
                     
-                    <!-- MODERN PROFILE DROPDOWN - Glass morphism style -->
+                    <!-- MODERN PROFILE DROPDOWN -->
                     <div 
                         x-show="profileOpen"
                         x-transition:enter="transition ease-out duration-200"
@@ -415,7 +402,7 @@
                         style="display: none;"
                     >
                         <div class="py-3">
-                            <!-- Modern User Info with gradient -->
+                            <!-- User Info -->
                             <div class="px-4 py-3 border-b border-gray-100">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-12 h-12 bg-gradient-to-br from-pink-border to-[#FFB0C8] rounded-2xl flex items-center justify-center shadow-md">
@@ -428,14 +415,14 @@
                                 </div>
                             </div>
                             
-                            <!-- Modern Menu Items with icons -->
+                            <!-- Menu Items -->
                             <div class="py-2">
                                 <!-- Profile Link -->
                                 <a 
                                     href="/profile" 
                                     class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-gray-50 hover:to-transparent group"
                                 >
-                                    <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-pink-border/20 transition-colors duration-200">
+                                    <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-pink-border/20">
                                         <i class="fas fa-user text-gray-600 group-hover:text-custom-gray"></i>
                                     </div>
                                     <span class="font-medium">Profile</span>
@@ -446,7 +433,7 @@
                                     href="#" 
                                     class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-gray-50 hover:to-transparent group"
                                 >
-                                    <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-pink-border/20 transition-colors duration-200">
+                                    <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-pink-border/20">
                                         <i class="fas fa-cog text-gray-600 group-hover:text-custom-gray"></i>
                                     </div>
                                     <span class="font-medium">Settings</span>
@@ -461,7 +448,7 @@
                                     class="flex items-center px-4 py-3 text-sm text-red-600 hover:bg-gradient-to-r hover:from-red-50 hover:to-transparent group"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                 >
-                                    <div class="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center mr-3 group-hover:bg-red-100 transition-colors duration-200">
+                                    <div class="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center mr-3 group-hover:bg-red-100">
                                         <i class="fas fa-sign-out-alt text-red-600"></i>
                                     </div>
                                     <span class="font-medium">Logout</span>
@@ -478,7 +465,7 @@
             </div>
         </div>
 
-        <!-- Tab Section (unchanged) -->
+        <!-- Tab Section -->
         <div class="tab-container">
             <div class="nav-tabs">
                 <div class="indicator-container">
@@ -522,7 +509,7 @@
                 </div>
             </div>
             
-            <!-- ORDERS COLUMN (unchanged) -->
+            <!-- ORDERS COLUMN -->
             <div class="column column-orders">
                 <div class="column-content">
                     <div class="placeholder-content">
@@ -541,7 +528,7 @@
             </div>
         </div>
         
-        <!-- Active Tab Display (unchanged) -->
+        <!-- Active Tab Display -->
         <div class="fixed bottom-4 right-4 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-lg text-sm border border-gray-100">
             <div class="font-semibold text-custom-gray">Active Tab:</div>
             <div id="active-tab-name" class="text-lg font-bold bg-gradient-to-r from-custom-gray to-gray-600 bg-clip-text text-transparent">Breads</div>

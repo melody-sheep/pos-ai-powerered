@@ -1,4 +1,4 @@
-/* CUSTOM STYLES FOR CASHIER DASHBOARD - MODERN VERSION */
+/* CUSTOM STYLES FOR CASHIER DASHBOARD - CLEAN VERSION */
 
 /* Core Styles */
 body {
@@ -44,14 +44,14 @@ body {
     gap: 20px;
 }
 
-/* Header right content (icons) - MODERN */
+/* Header right content (icons) */
 .header-right-content {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-/* Tab container - MODERN */
+/* Tab container */
 .tab-container {
     position: relative;
     left: 40px;
@@ -65,39 +65,29 @@ body {
     display: flex;
     align-items: center;
     padding: 0 40px;
-    box-shadow: 0 4px 20px rgba(255, 197, 217, 0.1);
-    transition: all 0.3s ease;
 }
 
 .tab-container:hover {
     border-color: #FFC5D9;
-    box-shadow: 0 8px 25px rgba(255, 197, 217, 0.15);
 }
 
-/* Logo - MODERN */
+/* Logo */
 .logo-responsive {
     flex-shrink: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     width: 52px;
     height: 52px;
-}
-
-.logo-responsive:hover {
-    transform: scale(1.08) rotate(2deg);
 }
 
 /* Logo color */
 .logo-triangle {
     stroke: #484545;
-    transition: all 0.3s ease;
 }
 
-/* Header text - MODERN */
+/* Header text */
 .title-responsive {
     font-weight: 700;
     color: #484545;
     white-space: nowrap;
-    transition: all 0.3s ease;
     font-size: 32px;
     letter-spacing: -0.5px;
     background: linear-gradient(135deg, #484545 0%, #6B7280 100%);
@@ -106,10 +96,9 @@ body {
     background-clip: text;
 }
 
-/* MODERN PROFILE ICON STYLES */
+/* PROFILE ICON STYLES */
 .profile-icon {
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
 }
 
@@ -122,18 +111,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .profile-icon-circle:hover {
     background: linear-gradient(145deg, #ffffff, #f1f5f9);
     border-color: #FFC5D9;
-    box-shadow: 0 8px 16px rgba(255, 197, 217, 0.2);
-    transform: translateY(-1px);
 }
 
-/* Dropdowns - MODERN */
+/* Dropdowns */
 .dropdown-content {
     box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
     border: none;
@@ -168,14 +153,13 @@ body {
     height: 100%;
 }
 
-/* Vertical separator line - MODERN */
+/* Vertical separator line */
 .vertical-separator {
     width: 3px;
     height: 57px;
     background: linear-gradient(180deg, #FFC5D9 0%, #FFB0C8 50%, #FFC5D9 100%);
     border-radius: 3px;
     margin: 0 50px;
-    box-shadow: 0 2px 4px rgba(255, 197, 217, 0.2);
 }
 
 /* Tab item */
@@ -189,13 +173,12 @@ body {
     padding: 0 5px;
 }
 
-/* Tab text - MODERN */
+/* Tab text */
 .tab-text {
     font-size: 30px;
     font-weight: 500;
     color: #484545;
     opacity: 0.7;
-    transition: all 0.2s ease;
     white-space: nowrap;
     letter-spacing: -0.3px;
 }
@@ -217,28 +200,25 @@ body {
     z-index: 1;
 }
 
-/* Moving indicator - MODERN */
+/* Moving indicator */
 .moving-indicator {
     position: absolute;
     bottom: 0;
     height: 4px;
     background: linear-gradient(90deg, #FFC5D9, #FFB0C8);
     border-radius: 4px 4px 0 0;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 8px rgba(255, 197, 217, 0.4);
 }
 
 /* Hover effects */
 .tab-item:hover .tab-text {
     opacity: 0.9;
-    transform: translateY(-1px);
 }
 
 /* =================================== */
-/* TWO-COLUMN LAYOUT STYLES - MODERN */
+/* TWO-COLUMN LAYOUT STYLES - REDUCED HEIGHT */
 /* =================================== */
 
-/* Two-column container */
+/* Two-column container - REDUCED HEIGHT */
 .two-column-container {
     position: relative;
     left: 40px;
@@ -248,28 +228,95 @@ body {
     display: flex;
     gap: 30px;
     align-items: stretch;
-    min-height: 500px;
+    height: 450px; /* REDUCED from 600px */
 }
 
-/* Each column - MODERN */
+/* Each column - REDUCED HEIGHT */
 .column {
     flex: 1;
     min-width: 0;
-    min-height: 500px;
+    height: 450px; /* REDUCED from 600px */
     background: white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden; /* Prevent content from overflowing */
 }
 
-.column:hover {
-    box-shadow: 0 12px 30px rgba(255, 197, 217, 0.12);
-    transform: translateY(-2px);
+/* Product Selection Section - REDUCED HEIGHT */
+.product-selection-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px; /* REDUCED from 500px */
+    padding: 1.5rem; /* REDUCED padding */
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    grid-column: 1 / -1;
 }
 
-/* First column - Pink border */
+.selection-icon {
+    margin-bottom: 1rem; /* REDUCED margin */
+    padding: 0.75rem; /* REDUCED padding */
+    background: linear-gradient(135deg, rgba(255, 197, 217, 0.2), transparent);
+    border-radius: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.selection-icon svg {
+    width: 4rem; /* REDUCED from 5rem */
+    height: 4rem; /* REDUCED from 5rem */
+    color: #484545;
+}
+
+.selection-title {
+    font-size: 1.25rem; /* REDUCED from 1.5rem */
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem; /* REDUCED margin */
+    width: 100%;
+    text-align: center;
+}
+
+.selection-subtext {
+    color: #6B7280;
+    margin-bottom: 1.5rem; /* REDUCED from 2rem */
+    max-width: 24rem;
+    font-size: 0.875rem; /* REDUCED from 1rem */
+    width: 100%;
+    text-align: center;
+}
+
+.add-product-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem; /* REDUCED padding */
+    background: linear-gradient(to right, #FFC5D9, #FFB0C8);
+    color: white;
+    font-weight: 500;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem; /* ADDED font size */
+}
+
+.add-product-btn:hover {
+    background: #FF0059;
+}
+
+.add-product-btn svg {
+    width: 1.125rem; /* REDUCED from 1.25rem */
+    height: 1.125rem; /* REDUCED from 1.25rem */
+}
+
+/* First column - Pink border - ONLY border color changes */
 .column-products {
     border: 2px solid rgba(255, 197, 217, 0.5);
     background: linear-gradient(145deg, #ffffff, #fcfcfc);
@@ -279,7 +326,7 @@ body {
     border-color: #FFC5D9;
 }
 
-/* Second column - Gray dashed border */
+/* Second column - Gray dashed border - ONLY border color changes */
 .column-orders {
     border: 2px dashed rgba(72, 69, 69, 0.3);
     background: linear-gradient(145deg, #ffffff, #fafafa);
@@ -290,7 +337,7 @@ body {
     border-style: dashed;
 }
 
-/* Column content area - FIXED */
+/* Column content area - FIXED HEIGHT with scrolling */
 .column-content {
     flex: 1;
     padding: 35px;
@@ -301,12 +348,12 @@ body {
     position: relative;
     z-index: 1;
     width: 100%;
+    height: 100%;
     overflow-y: auto;
-    min-height: 500px;
     box-sizing: border-box;
 }
 
-/* Placeholder styling - MODERN */
+/* Placeholder styling */
 .placeholder-content {
     text-align: center;
     max-width: 400px;
@@ -324,12 +371,9 @@ body {
     align-items: center;
     justify-content: center;
     color: #94a3b8;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
 .column:hover .placeholder-icon {
-    transform: scale(1.05);
     color: #484545;
     background: linear-gradient(145deg, #fff5f7, #ffeef2);
 }
@@ -359,49 +403,32 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     width: 100%;
-    animation: fade-in 0.3s ease-out;
     align-content: start;
     justify-content: start;
     margin: 0;
     padding: 0;
 }
 
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Product card styling - FIXED */
+/* Product card styling - NO ANIMATIONS */
 .product-card {
     display: flex;
     flex-direction: column;
     height: 100%;
     min-height: 280px;
     overflow: hidden;
-    animation: scale-in 0.3s ease-out;
     width: 100%;
     max-width: 100%;
     justify-self: start;
+    background: white;
+    border-radius: 0.75rem;
+    border: 1px solid #f1f5f9;
 }
 
-@keyframes scale-in {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.product-card:hover {
+    border-color: #FFC5D9;
 }
 
-/* Add Product Frame - Dotted Border - FIXED */
+/* Add Product Frame - Dotted Border - NO ANIMATIONS */
 .add-product-frame {
     background: white;
     border: 2px dashed rgba(255, 197, 217, 0.6);
@@ -414,18 +441,13 @@ body {
     min-height: 280px;
     width: 100%;
     max-width: 180px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
     cursor: pointer;
-    animation: scale-in 0.3s ease-out;
     box-sizing: border-box;
     justify-self: start;
 }
 
 .add-product-frame:hover {
     border-color: #FFC5D9;
-    box-shadow: 0 8px 20px rgba(255, 197, 217, 0.15);
-    transform: translateY(-2px);
 }
 
 .add-product-frame-content {
@@ -437,91 +459,8 @@ body {
     width: 100%;
 }
 
-/* Product Selection Section - FIXED */
-.product-selection-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px;
-    padding: 2rem;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    grid-column: 1 / -1;
-}
-
-.selection-icon {
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: linear-gradient(135deg, rgba(255, 197, 217, 0.2), transparent);
-    border-radius: 1rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.selection-icon svg {
-    width: 5rem;
-    height: 5rem;
-    color: #484545;
-}
-
-.selection-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 0.75rem;
-    width: 100%;
-    text-align: center;
-}
-
-.selection-subtext {
-    color: #6B7280;
-    margin-bottom: 2rem;
-    max-width: 24rem;
-    font-size: 1rem;
-    width: 100%;
-    text-align: center;
-}
-
-.add-product-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: linear-gradient(to right, #FFC5D9, #FFB0C8);
-    color: white;
-    font-weight: 500;
-    border-radius: 0.75rem;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    transform: scale(1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.add-product-btn:hover {
-    background: #FF0059;
-    box-shadow: 0 0 20px rgba(255, 0, 89, 0.2);
-    transform: scale(1.05);
-}
-
-.add-product-btn:focus {
-    outline: none;
-    ring: 2px solid #FFC5D9;
-    ring-offset: 2px;
-}
-
-.add-product-btn svg {
-    width: 1.25rem;
-    height: 1.25rem;
-}
-
 /* =================================== */
-/* RESPONSIVE MEDIA QUERIES - UPDATED */
+/* RESPONSIVE MEDIA QUERIES */
 /* =================================== */
 
 @media (max-width: 1600px) {
@@ -565,9 +504,13 @@ body {
     }
     .two-column-container {
         max-width: 1200px;
+        height: 400px; /* REDUCED from 550px */
     }
     .column {
-        min-height: 600px;
+        height: 400px; /* REDUCED from 550px */
+    }
+    .product-selection-section {
+        min-height: 350px; /* ADDED responsive height */
     }
     .title-responsive {
         font-size: 28px;
@@ -600,9 +543,13 @@ body {
     .two-column-container {
         max-width: 1100px;
         gap: 25px;
+        height: 380px; /* REDUCED from 500px */
     }
     .column {
-        min-height: 550px;
+        height: 380px; /* REDUCED from 500px */
+    }
+    .product-selection-section {
+        min-height: 330px; /* ADDED responsive height */
     }
     .title-responsive {
         font-size: 26px;
@@ -654,10 +601,15 @@ body {
         max-width: 800px;
         margin-top: 30px;
         gap: 25px;
+        height: auto;
+        min-height: 350px; /* REDUCED from 400px */
     }
     .column {
         width: 100%;
-        min-height: 400px;
+        height: 350px; /* REDUCED from 400px */
+    }
+    .product-selection-section {
+        min-height: 300px; /* ADDED responsive height */
     }
     .title-responsive {
         font-size: 24px;
@@ -757,7 +709,6 @@ body {
         background: linear-gradient(90deg, #FFC5D9, #FFB0C8);
         border-radius: 1.5px;
         transform: scaleX(0);
-        transition: transform 0.2s ease;
     }
     .tab-item.active::after {
         transform: scaleX(1);

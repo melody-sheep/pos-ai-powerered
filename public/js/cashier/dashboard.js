@@ -1,4 +1,4 @@
-// CASHIER DASHBOARD JAVASCRIPT
+// CASHIER DASHBOARD JAVASCRIPT - Clean version
 
 // Navigation functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (activeTab) {
             activeTab.classList.add('active');
             
-            // Move the indicator with QUICK animation
+            // Move the indicator
             moveIndicator(activeTab, initial);
             
             // Update active tab display
@@ -70,16 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const leftPosition = tabRect.left - containerRect.left;
         const tabWidth = tabRect.width;
         
-        if (initial) {
-            // Set initial position without animation
-            indicator.style.left = leftPosition + 'px';
-            indicator.style.width = tabWidth + 'px';
-        } else {
-            // QUICK animation to new position
-            indicator.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
-            indicator.style.left = leftPosition + 'px';
-            indicator.style.width = tabWidth + 'px';
-        }
+        // Set position without animation
+        indicator.style.left = leftPosition + 'px';
+        indicator.style.width = tabWidth + 'px';
     }
     
     function getTabName(tabId) {
@@ -154,25 +147,5 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSizes();
 });
 
-// Column interaction (optional for future features)
-document.addEventListener('DOMContentLoaded', function() {
-    const columns = document.querySelectorAll('.column');
-    
-    columns.forEach(column => {
-        // Add hover effect
-        column.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-            this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
-        });
-        
-        column.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
-        });
-    });
-    
-    // Console log for debugging
-    console.log('Cashier Dashboard loaded successfully');
-    console.log('Tab container max-width: 1361px');
-    console.log('Each column width: ~670.5px (calculated: (1361px - 20px gap) / 2)');
-});
+// Console log for debugging
+console.log('Cashier Dashboard loaded successfully');

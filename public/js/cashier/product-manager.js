@@ -1,4 +1,4 @@
-// Product Manager - With Add Product Modal functionality
+// Product Manager - Clean version with NO animations
 class ProductManager {
     constructor(config = {}) {
         console.log('Product Manager initialized');
@@ -40,8 +40,6 @@ class ProductManager {
         window.addEventListener('product-added', (event) => {
             console.log('Product added event received:', event.detail);
             const addedCategory = event.detail?.category;
-            console.log('Added product category:', addedCategory);
-            console.log('Current category:', this.currentCategory);
             
             // Always refresh the category that was added
             if (addedCategory) {
@@ -53,9 +51,6 @@ class ProductManager {
                 } else {
                     // If it's a different category, just show a notification
                     this.showNotification(`Product added to ${addedCategory} category`, 'info');
-                    
-                    // Optionally, you could still refresh the current category if needed
-                    // this.refreshProducts();
                 }
             }
         });
@@ -184,13 +179,13 @@ class ProductManager {
             : null;
 
         return `
-            <div class="product-card bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-pink-border overflow-hidden group">
+            <div class="product-card bg-white rounded-xl border border-gray-100 hover:border-pink-border overflow-hidden">
                 <!-- Product Image -->
                 <div class="relative h-32 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-3">
                     ${imageUrl 
                         ? `<img src="${imageUrl}" 
                              alt="${product.name}"
-                             class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300">`
+                             class="max-w-full max-h-full object-contain">`
                         : `<div class="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center">
                                 <svg class="w-8 h-8 text-pink-border" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -221,7 +216,7 @@ class ProductManager {
                     <!-- Add to Order Button -->
                     <button 
                         onclick="addToOrder(${product.id})"
-                        class="w-full bg-gradient-to-r from-pink-border to-pink-400 text-white text-xs font-medium py-2 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-1"
+                        class="w-full bg-gradient-to-r from-pink-border to-pink-400 text-white text-xs font-medium py-2 rounded-lg hover:opacity-90 flex items-center justify-center gap-1"
                         ${product.stock < 1 ? 'disabled' : ''}
                     >
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,14 +268,14 @@ class ProductManager {
             <div class="add-product-frame group cursor-pointer" onclick="window.productManager?.openAddProductModal()" data-add-product>
                 <div class="add-product-frame-content">
                     <!-- Plus Icon with Circle Background -->
-                    <div class="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mb-3 group-hover:bg-pink-100 transition-colors duration-300 mx-auto">
-                        <svg class="w-8 h-8 text-pink-border group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mb-3 mx-auto">
+                        <svg class="w-8 h-8 text-pink-border" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
                     
                     <!-- Add Product Text -->
-                    <span class="text-sm font-medium text-gray-700 group-hover:text-pink-border transition-colors duration-300">
+                    <span class="text-sm font-medium text-gray-700">
                         Add New Product
                     </span>
                     <span class="text-xs text-gray-400 mt-1 text-center block">
@@ -337,7 +332,6 @@ window.ProductManager = ProductManager;
 window.addToOrder = function(productId) {
     console.log('Adding product to order:', productId);
     // Implement your add to order logic here
-    // For demo purposes, show a notification
     const productManager = window.productManager;
     if (productManager) {
         productManager.showNotification(`Product ${productId} added to order`, 'success');

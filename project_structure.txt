@@ -2,8 +2,6 @@ pos-ai-powerered/ 📁 - Project root
 ├── .editorconfig ⚙️ - Editor config
 ├── .gitattributes 📝 - Git attributes
 ├── .gitignore 🚫 - Git ignore rules
-├── .env 🔑 - Environment variables (local)
-├── .env.example 🔑 - Environment variables example
 ├── artisan 🛠️ - Laravel CLI
 ├── composer.json 📦 - PHP dependencies
 ├── composer.lock 🔒 - Composer lock
@@ -85,7 +83,6 @@ pos-ai-powerered/ 📁 - Project root
 │
 ├── database/ 🗄️ - Database files
 │   ├── .gitignore 🚫
-│   ├── database.sqlite 🗄️ - SQLite database file
 │   ├── factories/ 🏭
 │   │   └── UserFactory.php 👤
 │   ├── migrations/ 🔄
@@ -118,13 +115,13 @@ pos-ai-powerered/ 📁 - Project root
 │   ├── css/ 🎨 - Stylesheets
 │   │   ├── app.css 🎨 - App CSS
 │   │   └── cashier/ 💰 - Cashier styles
-│   │       ├── product-modal.css 🎨 - Modal styling
-│   │       └── product-card.css 🎨 - Product card styling
+│   │       └── product-modal.css 🎨 - Modal styling
 │   │
 │   ├── js/ 📜 - JavaScript
 │   │   ├── app.js 📜 - App JS
 │   │   ├── bootstrap.js 🚀 - Bootstrap JS
 │   │   └── cashier/ 💰 - Cashier modules
+│   │       ├── dashboard.js 📜 - Cashier dashboard JS
 │   │       ├── product-manager.js 📜 - Product selection & modal logic
 │   │       ├── product-selection.js 📜 - Product selection logic
 │   │       └── product-manager.js.backup 📜 - Backup of product manager
