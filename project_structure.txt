@@ -15,6 +15,9 @@ pos-ai-powerered/ 📁 - Project root
 ├── vite.config.js ⚡ - Vite config
 ├── postcss.config.js ⚙️ - PostCSS config
 ├── tailwind.config.js 🎨 - Tailwind config
+├── debug_products.php 🐛 - Debug products script
+├── diagnostic.js 🩺 - Diagnostic script
+└── test_api.php 🧪 - Test API script
 │
 ├── app/ 📁 - Application code
 │   ├── Http/ 🌐 - HTTP layer
@@ -107,25 +110,30 @@ pos-ai-powerered/ 📁 - Project root
 │   ├── .htaccess 🔒
 │   ├── favicon.ico 🌟
 │   ├── index.php 🚀
-│   └── robots.txt 🤖
+│   ├── robots.txt 🤖
+│   ├── test-products.html 🧪
+│   └── test-frontend.php 🧪
 │
 ├── resources/ 📂 - Resources
 │   ├── css/ 🎨 - Stylesheets
 │   │   ├── app.css 🎨 - App CSS
 │   │   └── cashier/ 💰 - Cashier styles
-│   │       └── product-modal.css 🎨 - Modal styling
+│   │       ├── product-modal.css 🎨 - Modal styling
+│   │       └── product-card.css 🎨 - Product card styling
 │   │
 │   ├── js/ 📜 - JavaScript
 │   │   ├── app.js 📜 - App JS
 │   │   ├── bootstrap.js 🚀 - Bootstrap JS
 │   │   └── cashier/ 💰 - Cashier modules
 │   │       ├── product-manager.js 📜 - Product selection & modal logic
+│   │       ├── product-selection.js 📜 - Product selection logic
 │   │       └── product-manager.js.backup 📜 - Backup of product manager
 │   │
 │   └── views/ 👁️ - Blade templates
 │       ├── temp-logout.blade.php 👋
 │       ├── test-design.blade.php 🧪
 │       ├── test-login.blade.php 🧪
+│       ├── test-product-init.blade.php 🧪
 │       ├── welcome.blade.php 👋
 │       │
 │       ├── cashier/ 💰 - Cashier POV
@@ -134,7 +142,9 @@ pos-ai-powerered/ 📁 - Project root
 │       │   ├── components/ 🧩 - Cashier components (empty)
 │       │   └── partials/ 🧩 - Cashier partials
 │       │       ├── _add-product-modal.blade.php 📄 - Add product modal
-│       │       └── _image-gallery-modal.blade.php 🖼️ - Image gallery modal
+│       │       ├── _add-product-prompt.blade.php 📄 - Add product prompt
+│       │       ├── _image-gallery-modal.blade.php 🖼️ - Image gallery modal
+│       │       └── _product-card.blade.php 🧩 - Product card component
 │       │
 │       ├── auth/ 🔐 - Auth views
 │       │   ├── confirm-password.blade.php 🔒
