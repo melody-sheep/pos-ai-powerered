@@ -179,7 +179,7 @@ class ProductManager {
             : null;
 
         return `
-            <div class="product-card bg-white rounded-xl border border-gray-100 hover:border-pink-border overflow-hidden">
+            <div class="product-card bg-white rounded-xl border border-gray-100  overflow-hidden">
                 <!-- Product Image -->
                 <div class="relative h-32 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-3">
                     ${imageUrl 
