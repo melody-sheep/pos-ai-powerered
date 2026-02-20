@@ -179,9 +179,9 @@ class ProductManager {
             : null;
 
         return `
-            <div class="product-card bg-white rounded-xl border border-gray-100  overflow-hidden">
+            <div class="product-card bg-white rounded-xl border border-gray-100 overflow-hidden" style="height: 280px;">
                 <!-- Product Image -->
-                <div class="relative h-32 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-3">
+                <div class="relative h-28 bg-gradient-to-br to-gray-100 flex items-center justify-center p-3">
                     ${imageUrl 
                         ? `<img src="${imageUrl}" 
                              alt="${product.name}"

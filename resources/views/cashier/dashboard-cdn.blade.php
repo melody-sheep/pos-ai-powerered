@@ -64,26 +64,27 @@
             overflow-y: auto;
         }
 
-        /* Products grid - FIXED alignment */
+        /* Products grid - FIXED: 2 cards per row */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             width: 100%;
             align-items: start;
             justify-items: start;
         }
 
-        /* Product card - ensure left alignment */
+        /* Product card - FIXED dimensions */
         .product-card {
             width: 100%;
+            height: 280px;
             justify-self: start;
         }
 
-        /* Add product frame - left aligned */
+        /* Add product frame - FIXED dimensions */
         .add-product-frame {
             width: 100%;
-            max-width: 180px;
+            height: 280px;
             justify-self: start;
         }
 
