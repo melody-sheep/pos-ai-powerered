@@ -65,10 +65,39 @@ body {
     display: flex;
     align-items: center;
     padding: 0 40px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .tab-container:hover {
     border-color: #FFC5D9;
+}
+
+/* Fixed tab container - shown when scrolling up */
+.tab-container.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, top 0.3s ease-in-out;
+}
+
+/* Hidden tab container - hidden when scrolling down */
+.tab-container.hidden {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Push content down when tabs are fixed */
+.main-container.tabs-fixed {
+    padding-top: 120px;
 }
 
 /* Logo */
@@ -228,19 +257,19 @@ body {
     display: flex;
     gap: 30px;
     align-items: stretch;
-    height: 450px; /* REDUCED from 600px */
+    height: 450px;
 }
 
 /* Each column - REDUCED HEIGHT */
 .column {
     flex: 1;
     min-width: 0;
-    height: 450px; /* REDUCED from 600px */
+    height: 450px;
     background: white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Prevent content from overflowing */
+    overflow: hidden;
 }
 
 /* Product Selection Section - REDUCED HEIGHT */
@@ -249,8 +278,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 400px; /* REDUCED from 500px */
-    padding: 1.5rem; /* REDUCED padding */
+    min-height: 400px;
+    padding: 1.5rem;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -259,8 +288,8 @@ body {
 }
 
 .selection-icon {
-    margin-bottom: 1rem; /* REDUCED margin */
-    padding: 0.75rem; /* REDUCED padding */
+    margin-bottom: 1rem;
+    padding: 0.75rem;
     background: linear-gradient(135deg, rgba(255, 197, 217, 0.2), transparent);
     border-radius: 1rem;
     width: 100%;
@@ -269,25 +298,25 @@ body {
 }
 
 .selection-icon svg {
-    width: 4rem; /* REDUCED from 5rem */
-    height: 4rem; /* REDUCED from 5rem */
+    width: 4rem;
+    height: 4rem;
     color: #484545;
 }
 
 .selection-title {
-    font-size: 1.25rem; /* REDUCED from 1.5rem */
+    font-size: 1.25rem;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 0.5rem; /* REDUCED margin */
+    margin-bottom: 0.5rem;
     width: 100%;
     text-align: center;
 }
 
 .selection-subtext {
     color: #6B7280;
-    margin-bottom: 1.5rem; /* REDUCED from 2rem */
+    margin-bottom: 1.5rem;
     max-width: 24rem;
-    font-size: 0.875rem; /* REDUCED from 1rem */
+    font-size: 0.875rem;
     width: 100%;
     text-align: center;
 }
@@ -297,14 +326,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.6rem 1.25rem; /* REDUCED padding */
+    padding: 0.6rem 1.25rem;
     background: linear-gradient(to right, #FFC5D9, #FFB0C8);
     color: white;
     font-weight: 500;
     border-radius: 0.75rem;
     border: none;
     cursor: pointer;
-    font-size: 0.9rem; /* ADDED font size */
+    font-size: 0.9rem;
 }
 
 .add-product-btn:hover {
@@ -312,11 +341,11 @@ body {
 }
 
 .add-product-btn svg {
-    width: 1.125rem; /* REDUCED from 1.25rem */
-    height: 1.125rem; /* REDUCED from 1.25rem */
+    width: 1.125rem;
+    height: 1.125rem;
 }
 
-/* First column - Pink border - ONLY border color changes */
+/* First column - Pink border */
 .column-products {
     border: 2px solid rgba(255, 197, 217, 0.5);
     background: linear-gradient(145deg, #ffffff, #fcfcfc);
@@ -326,7 +355,7 @@ body {
     border-color: #FFC5D9;
 }
 
-/* Second column - Gray dashed border - ONLY border color changes */
+/* Second column - Gray dashed border */
 .column-orders {
     border: 2px dashed rgba(72, 69, 69, 0.3);
     background: linear-gradient(145deg, #ffffff, #fafafa);
@@ -400,10 +429,10 @@ body {
 }
 
 /* =================================== */
-/* PRODUCTS GRID LAYOUT STYLES - FIXED */
+/* PRODUCTS GRID LAYOUT STYLES */
 /* =================================== */
 
-/* Products grid container - FIXED */
+/* Products grid container */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -415,7 +444,7 @@ body {
     padding: 0;
 }
 
-/* Product card styling - NO ANIMATIONS */
+/* Product card styling */
 .product-card {
     display: flex;
     flex-direction: column;
@@ -434,7 +463,7 @@ body {
     border-color: #FFC5D9;
 }
 
-/* Add Product Frame - Dotted Border - NO ANIMATIONS */
+/* Add Product Frame - Dotted Border */
 .add-product-frame {
     background: white;
     border: 2px dashed rgba(255, 197, 217, 0.6);
@@ -510,13 +539,13 @@ body {
     }
     .two-column-container {
         max-width: 1200px;
-        height: 400px; /* REDUCED from 550px */
+        height: 400px;
     }
     .column {
-        height: 400px; /* REDUCED from 550px */
+        height: 400px;
     }
     .product-selection-section {
-        min-height: 350px; /* ADDED responsive height */
+        min-height: 350px;
     }
     .title-responsive {
         font-size: 28px;
@@ -549,13 +578,13 @@ body {
     .two-column-container {
         max-width: 1100px;
         gap: 25px;
-        height: 380px; /* REDUCED from 500px */
+        height: 380px;
     }
     .column {
-        height: 380px; /* REDUCED from 500px */
+        height: 380px;
     }
     .product-selection-section {
-        min-height: 330px; /* ADDED responsive height */
+        min-height: 330px;
     }
     .title-responsive {
         font-size: 26px;
@@ -608,14 +637,14 @@ body {
         margin-top: 30px;
         gap: 25px;
         height: auto;
-        min-height: 350px; /* REDUCED from 400px */
+        min-height: 350px;
     }
     .column {
         width: 100%;
-        height: 350px; /* REDUCED from 400px */
+        height: 350px;
     }
     .product-selection-section {
-        min-height: 300px; /* ADDED responsive height */
+        min-height: 300px;
     }
     .title-responsive {
         font-size: 24px;

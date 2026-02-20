@@ -147,5 +147,78 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSizes();
 });
 
+// Scroll behavior for navigation tabs - Smooth version
+document.addEventListener('DOMContentLoaded', function() {
+    const tabContainer = document.querySelector('.tab-container');
+    const mainContainer = document.querySelector('.main-container');
+    
+    if (!tabContainer || !mainContainer) {
+        console.log('Scroll behavior: Tab container or main container not found');
+        return;
+    }
+    
+    let lastScrollTop = 0;
+    let scrollThreshold = 10;
+    let currentState = 'default'; // 'default', 'fixed', 'hidden'
+    let isScrolling = false;
+    
+    function setTabState(state) {
+        if (currentState === state) return;
+        
+        currentState = state;
+        
+        if (state === 'fixed') {
+            tabContainer.classList.remove('hidden');
+            tabContainer.classList.add('fixed');
+            mainContainer.classList.add('tabs-fixed');
+        } else if (state === 'hidden') {
+            tabContainer.classList.add('hidden');
+            mainContainer.classList.remove('tabs-fixed');
+        } else if (state === 'default') {
+            tabContainer.classList.remove('fixed', 'hidden');
+            mainContainer.classList.remove('tabs-fixed');
+        }
+    }
+    
+    function handleScroll() {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // At the top of the page - reset to default
+        if (currentScrollTop <= scrollThreshold) {
+            setTabState('default');
+        } else {
+            // Scrolling DOWN
+            if (currentScrollTop > lastScrollTop) {
+                if (currentState === 'default' || currentState === 'hidden') {
+                    setTabState('fixed');
+                }
+            } 
+            // Scrolling UP
+            else {
+                if (currentState === 'fixed') {
+                    setTabState('hidden');
+                }
+            }
+        }
+        
+        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+    }
+    
+    // Use requestAnimationFrame for smoother scrolling
+    function onScroll() {
+        if (!isScrolling) {
+            window.requestAnimationFrame(function() {
+                handleScroll();
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    console.log('Scroll behavior initialized - smooth version');
+});
+
 // Console log for debugging
 console.log('Cashier Dashboard loaded successfully');
