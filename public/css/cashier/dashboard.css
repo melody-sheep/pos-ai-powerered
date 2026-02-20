@@ -353,6 +353,12 @@ body {
     box-sizing: border-box;
 }
 
+/* Orders column - Center content */
+.column-orders .column-content {
+    align-items: center;
+    justify-content: center;
+}
+
 /* Placeholder styling */
 .placeholder-content {
     text-align: center;
