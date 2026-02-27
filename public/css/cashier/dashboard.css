@@ -560,6 +560,16 @@ body {
 }
 
 /* =================================== */
+/* PRICE TEXT STYLES */
+/* =================================== */
+
+/* Price text styling - color #FF0059 and larger font */
+.product-card .text-pink-border {
+    color: #FF0059 !important;
+    font-size: 1.125rem;
+}
+
+/* =================================== */
 /* RESPONSIVE MEDIA QUERIES */
 /* =================================== */
 
