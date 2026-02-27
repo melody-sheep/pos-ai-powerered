@@ -314,7 +314,7 @@ class ProductManager {
                 <div class="p-3 flex flex-col flex-grow">
                     <!-- Product Name with Stock Indicator -->
                     <div class="flex items-start justify-between mb-1 gap-2">
-                        <h3 class="font-semibold text-gray-800 text-sm line-clamp-1 flex-1" title="${product.name}">
+                        <h3 class="font-semibold text-gray-800 text-base line-clamp-1 flex-1" title="${product.name}">
                             ${product.name}
                         </h3>
                         <div class="flex items-center gap-1.5 flex-shrink-0 mt-0.5">
@@ -339,7 +339,7 @@ class ProductManager {
                     </div>
 
                     <!-- Category - Fixed height container -->
-                    <div class="h-6 mb-2">
+                    <div class="h-6 mb-1">
                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
                             <span class="mr-1">${categoryIcon}</span>
                             <span class="capitalize">${product.category}</span>

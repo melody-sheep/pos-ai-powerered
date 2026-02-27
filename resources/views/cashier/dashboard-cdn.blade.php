@@ -77,14 +77,14 @@
         /* Product card - FIXED dimensions */
         .product-card {
             width: 100%;
-            height: 330px;
+            height: 310px;
             justify-self: start;
         }
 
         /* Add product frame - FIXED dimensions */
         .add-product-frame {
             width: 100%;
-            height: 330px;
+            height: 310px;
             justify-self: start;
         }
 
