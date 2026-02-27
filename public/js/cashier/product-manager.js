@@ -349,11 +349,16 @@ class ProductManager {
                     <!-- Add to Order Button -->
                     <button 
                         onclick="addToOrder(${product.id})"
-                        class="w-full bg-gradient-to-r from-pink-border to-pink-400 text-white text-xs font-medium py-2 rounded-lg hover:opacity-90 flex items-center justify-center gap-1"
+                        class="w-full text-sm font-semibold py-3 px-4 rounded-xl transition-all duration-300 ease-in-out flex items-center justify-center gap-2 group"
+                        style="background-color: #FFC5D9; color: #484545;"
+                        onmouseover="this.style.backgroundColor='#FF0059'; this.style.color='white'; this.querySelector('.plus-icon').style.display='inline-block';"
+                        onmouseout="this.style.backgroundColor='#FFC5D9'; this.style.color='#484545'; this.querySelector('.plus-icon').style.display='none';"
+                        onmousedown="this.style.backgroundColor='#FF0059'; this.style.color='white'; this.querySelector('.plus-icon').style.display='inline-block';"
+                        onmouseup="this.style.backgroundColor='#FF0059'; this.style.color='white';"
                         ${product.stock < 1 ? 'disabled' : ''}
                     >
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        <svg class="plus-icon w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
                         </svg>
                         <span>Add to Order</span>
                     </button>
