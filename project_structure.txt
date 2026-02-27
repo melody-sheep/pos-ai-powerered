@@ -15,7 +15,8 @@ pos-ai-powerered/ 📁 - Project root
 ├── tailwind.config.js 🎨 - Tailwind config
 ├── debug_products.php 🐛 - Debug products script
 ├── diagnostic.js 🩺 - Diagnostic script
-└── test_api.php 🧪 - Test API script
+├── test_api.php 🧪 - Test API script
+└── TODO.md 📝 - Todo list
 │
 ├── app/ 📁 - Application code
 │   ├── Http/ 🌐 - HTTP layer
@@ -91,7 +92,8 @@ pos-ai-powerered/ 📁 - Project root
 │   │   ├── 0001_01_01_000002_create_jobs_table.php 📋
 │   │   ├── 2026_02_02_160515_add_role_to_users_table.php 👤
 │   │   ├── 2026_02_17_080458_create_products_table.php 📦
-│   │   └── 2026_02_17_093355_create_gallery_images_table.php 🖼️
+│   │   ├── 2026_02_17_093355_create_gallery_images_table.php 🖼️
+│   │   └── 2026_02_18_000000_add_rating_to_products_table.php ⭐
 │   └── seeders/ 🌱
 │       ├── DatabaseSeeder.php 🌱
 │       └── ProductSeeder.php 📦
@@ -103,7 +105,8 @@ pos-ai-powerered/ 📁 - Project root
 │   ├── js/ 📜
 │   │   └── cashier/ 💰
 │   │       ├── dashboard.js 📜 - Cashier dashboard JS
-│   │       └── product-manager.js 📜 - Product manager JS
+│   │       ├── product-manager.js 📜 - Product manager JS
+│   │       └── add-product-modal.js 📜 - Add product modal JS
 │   ├── .htaccess 🔒
 │   ├── favicon.ico 🌟
 │   ├── index.php 🚀
@@ -124,6 +127,7 @@ pos-ai-powerered/ 📁 - Project root
 │   │       ├── dashboard.js 📜 - Cashier dashboard JS
 │   │       ├── product-manager.js 📜 - Product selection & modal logic
 │   │       ├── product-selection.js 📜 - Product selection logic
+│   │       ├── add-product-modal.js 📜 - Add product modal JS
 │   │       └── product-manager.js.backup 📜 - Backup of product manager
 │   │
 │   └── views/ 👁️ - Blade templates
