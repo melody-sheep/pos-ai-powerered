@@ -1,4 +1,4 @@
-// Product Manager - Clean version with NO animations
+// Product Manager - Clean version with pagination indicators
 class ProductManager {
     constructor(config = {}) {
         console.log('Product Manager initialized');
@@ -7,12 +7,15 @@ class ProductManager {
             gridSelector: '#productsGrid',
             products: [],
             currentCategory: 'breads',
+            currentPage: 1,
+            itemsPerPage: 8,
             onProductSelect: null,
             ...config
         };
 
         this.products = this.config.products;
         this.currentCategory = this.config.currentCategory;
+        this.currentPage = this.config.currentPage;
         
         this.init();
     }
@@ -63,6 +66,7 @@ class ProductManager {
             // Only refresh if it's a product category tab
             if (['breads', 'cakes', 'beverages'].includes(tabId)) {
                 this.currentCategory = tabId;
+                this.currentPage = 1; // Reset to first page
                 this.refreshProducts();
             } else {
                 // Clear the grid for non-product tabs
@@ -105,6 +109,7 @@ class ProductManager {
     switchCategory(category) {
         console.log('Switching to category:', category);
         this.currentCategory = category;
+        this.currentPage = 1; // Reset to first page
         this.refreshProducts();
     }
 
@@ -153,6 +158,15 @@ class ProductManager {
 
         console.log('Rendering grid with', this.products.length, 'products for category:', this.currentCategory);
 
+        // Calculate pagination
+        const itemsPerPage = this.config.itemsPerPage; // 2 columns x 4 rows
+        const totalPages = Math.ceil(this.products.length / itemsPerPage);
+        this.currentPage = Math.min(this.currentPage, totalPages || 1);
+
+        const startIndex = (this.currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const pageProducts = this.products.slice(startIndex, endIndex);
+
         let html = '';
 
         // If no products, show empty state with centered content
@@ -160,17 +174,68 @@ class ProductManager {
             console.log('No products, showing empty state');
             html = this.renderEmptyState();
         } else {
-            // Add product cards for each product - these will be left-aligned by the grid
-            this.products.forEach(product => {
+            // Add product cards for each product in current page - these will be left-aligned by the grid
+            pageProducts.forEach(product => {
                 html += this.renderProductCard(product);
             });
             
-            // Always add the "Add Product" frame at the end - also left-aligned
-            html += this.renderAddProductFrame();
+            // Add "Add Product" frame if on last page and there's space
+            if (this.currentPage === totalPages && pageProducts.length < itemsPerPage) {
+                html += this.renderAddProductFrame();
+            }
         }
 
         grid.innerHTML = html;
+
+        // Add page indicator
+        this.renderPageIndicator(totalPages);
+
         console.log('Grid rendered successfully');
+    }
+
+    renderPageIndicator(totalPages) {
+        // Remove existing indicator
+        const existingIndicator = document.querySelector('.page-indicator');
+        if (existingIndicator) {
+            existingIndicator.remove();
+        }
+
+        if (totalPages <= 1) return;
+
+        const grid = document.querySelector(this.config.gridSelector);
+        if (!grid) return;
+
+        const indicator = document.createElement('div');
+        indicator.className = 'page-indicator';
+
+        // Create dots
+        const dotsHtml = Array.from({length: totalPages}, (_, i) => {
+            const pageNum = i + 1;
+            return `<div class="page-dot${pageNum === this.currentPage ? ' active' : ''}" onclick="window.productManager.goToPage(${pageNum})"></div>`;
+        }).join('');
+
+        indicator.innerHTML = `
+            <div class="page-indicator-dots">${dotsHtml}</div>
+            <div class="page-indicator-text">${this.currentPage}/${totalPages}</div>
+            <div class="page-indicator-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 13l3 3 7-7"/>
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+        `;
+
+        // Insert after the grid
+        grid.parentNode.insertBefore(indicator, grid.nextSibling);
+    }
+
+    goToPage(pageNum) {
+        const itemsPerPage = this.config.itemsPerPage;
+        const totalPages = Math.ceil(this.products.length / itemsPerPage);
+        if (pageNum >= 1 && pageNum <= totalPages) {
+            this.currentPage = pageNum;
+            this.renderProductGrid();
+        }
     }
 
     renderProductCard(product) {
@@ -179,19 +244,22 @@ class ProductManager {
             : null;
 
         return `
-            <div class="product-card bg-white rounded-xl border border-gray-100 overflow-hidden" style="height: 280px;">
+            <div class="product-card bg-white rounded-xl border border-gray-100 overflow-hidden">
                 <!-- Product Image -->
-                <div class="relative h-28 bg-gradient-to-br to-gray-100 flex items-center justify-center p-3">
+                <div class="relative h-40 overflow-hidden">
                     ${imageUrl 
                         ? `<img src="${imageUrl}" 
                              alt="${product.name}"
-                             class="max-w-full max-h-full object-contain">`
-                        : `<div class="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center">
-                                <svg class="w-8 h-8 text-pink-border" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
+                             class="w-full h-full object-cover">`
+                        : `<div class="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                                <div class="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-pink-border" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
                             </div>`
                     }
+
 
                     <!-- Stock Badge -->
                     ${product.stock < 1 
@@ -349,7 +417,9 @@ function initializeProductManager() {
         window.productManager = new ProductManager({
             gridSelector: '#productsGrid',
             products: [],
-            currentCategory: 'breads'
+            currentCategory: 'breads',
+            currentPage: 1,
+            itemsPerPage: 8
         });
         console.log('ProductManager instance created:', window.productManager);
     }
