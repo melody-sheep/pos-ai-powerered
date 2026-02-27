@@ -238,10 +238,34 @@ class ProductManager {
         }
     }
 
+    getStockStatus(stock) {
+        if (stock < 1) {
+            return {
+                text: 'Out of Stock',
+                dotColor: 'bg-red-500',
+                textColor: 'text-red-600'
+            };
+        } else if (stock < 6) {
+            return {
+                text: 'Low Stock',
+                dotColor: 'bg-yellow-500',
+                textColor: 'text-yellow-600'
+            };
+        } else {
+            return {
+                text: 'In Stock',
+                dotColor: 'bg-green-500',
+                textColor: 'text-green-600'
+            };
+        }
+    }
+
     renderProductCard(product) {
         const imageUrl = product.image_path 
             ? `/storage/${product.image_path}`
             : null;
+        
+        const stockStatus = this.getStockStatus(product.stock);
 
         return `
             <div class="product-card bg-white rounded-xl border border-gray-100 overflow-hidden">
@@ -259,27 +283,26 @@ class ProductManager {
                                 </div>
                             </div>`
                     }
-
-
-                    <!-- Stock Badge -->
-                    ${product.stock < 1 
-                        ? '<span class="absolute top-2 right-2 bg-red-100 text-red-600 text-xs font-medium px-2 py-1 rounded-full">Out of Stock</span>'
-                        : product.stock < 6 
-                            ? '<span class="absolute top-2 right-2 bg-yellow-100 text-yellow-600 text-xs font-medium px-2 py-1 rounded-full">Low Stock</span>'
-                            : ''
-                    }
                 </div>
 
                 <!-- Product Info -->
                 <div class="p-3">
-                    <h3 class="font-semibold text-gray-800 text-sm mb-1 line-clamp-1" title="${product.name}">
-                        ${product.name}
-                    </h3>
+                    <!-- Product Name with Stock Indicator -->
+                    <div class="flex items-start justify-between mb-1 gap-2">
+                        <h3 class="font-semibold text-gray-800 text-sm line-clamp-1 flex-1" title="${product.name}">
+                            ${product.name}
+                        </h3>
+                        <div class="flex items-center gap-1.5 flex-shrink-0 mt-0.5">
+                            <span class="w-2 h-2 rounded-full ${stockStatus.dotColor}"></span>
+                            <span class="text-xs font-medium ${stockStatus.textColor} whitespace-nowrap">${stockStatus.text}</span>
+                        </div>
+                    </div>
                     
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-bold text-pink-border">₱${parseFloat(product.price).toFixed(2)}</span>
                         <span class="text-xs text-gray-500">Stock: ${product.stock}</span>
                     </div>
+
 
                     <!-- Add to Order Button -->
                     <button 
