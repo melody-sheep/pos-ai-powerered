@@ -15,6 +15,7 @@
             // Form fields
             productName: '',
             category: '',
+            rating: 'none',
             stock: '',
             price: '',
             description: '',
@@ -30,6 +31,7 @@
             errors: {
                 productName: false,
                 category: false,
+                rating: false,
                 stock: false,
                 price: false,
                 image: false
@@ -42,6 +44,7 @@
             touched: {
                 productName: false,
                 category: false,
+                rating: false,
                 stock: false,
                 price: false
             },
@@ -53,6 +56,37 @@
                        this.stock !== '' && 
                        this.price !== '' && 
                        parseFloat(this.price) > 0;
+            },
+
+            // Category icons and colors
+            get categoryOptions() {
+                return [
+                    { value: 'breads', label: 'Breads', icon: '🥖', color: 'text-amber-600', bgColor: 'bg-amber-50', borderColor: 'border-amber-200' },
+                    { value: 'cakes', label: 'Cakes', icon: '🎂', color: 'text-pink-600', bgColor: 'bg-pink-50', borderColor: 'border-pink-200' },
+                    { value: 'beverages', label: 'Beverages', icon: '☕', color: 'text-blue-600', bgColor: 'bg-blue-50', borderColor: 'border-blue-200' }
+                ];
+            },
+
+            // Rating icons and colors
+            get ratingOptions() {
+                return [
+                    { value: 'none', label: 'No Rating', icon: '', color: 'text-gray-500', bgColor: 'bg-gray-50' },
+                    { value: 'top_rated', label: 'Top Rated', icon: '⭐', color: 'text-yellow-500', bgColor: 'bg-yellow-50' },
+                    { value: 'recommended', label: 'Recommended', icon: '👍', color: 'text-blue-500', bgColor: 'bg-blue-50' },
+                    { value: 'best_selling', label: 'Best Selling', icon: '🔥', color: 'text-orange-500', bgColor: 'bg-orange-50' },
+                    { value: 'new_arrival', label: 'New Arrival', icon: '✨', color: 'text-purple-500', bgColor: 'bg-purple-50' },
+                    { value: 'popular', label: 'Popular', icon: '🏆', color: 'text-green-500', bgColor: 'bg-green-50' }
+                ];
+            },
+
+            // Get selected category display
+            get selectedCategoryDisplay() {
+                return this.categoryOptions.find(opt => opt.value === this.category) || null;
+            },
+
+            // Get selected rating display
+            get selectedRatingDisplay() {
+                return this.ratingOptions.find(opt => opt.value === this.rating) || this.ratingOptions[0];
             },
             
             // Stock status
@@ -75,6 +109,9 @@
                     case 'category':
                         this.errors.category = this.category === '';
                         break;
+                    case 'rating':
+                        this.errors.rating = false; // Rating is optional, always valid
+                        break;
                     case 'stock':
                         this.errors.stock = this.stock === '' || parseInt(this.stock) < 0;
                         break;
@@ -88,11 +125,13 @@
             validateAll() {
                 this.validateField('productName');
                 this.validateField('category');
+                this.validateField('rating');
                 this.validateField('stock');
                 this.validateField('price');
                 
                 return !this.errors.productName && 
                        !this.errors.category && 
+                       !this.errors.rating && 
                        !this.errors.stock && 
                        !this.errors.price;
             },
@@ -122,6 +161,7 @@
                 const formData = new FormData();
                 formData.append('name', this.productName);
                 formData.append('category', this.category);
+                formData.append('rating', this.rating);
                 formData.append('stock', this.stock);
                 formData.append('price', this.price);
                 formData.append('description', this.description || '');
@@ -223,6 +263,7 @@
             resetForm() {
                 this.productName = '';
                 this.category = '';
+                this.rating = 'none';
                 this.stock = '';
                 this.price = '';
                 this.description = '';
@@ -231,6 +272,7 @@
                 this.errors = {
                     productName: false,
                     category: false,
+                    rating: false,
                     stock: false,
                     price: false,
                     image: false
@@ -238,6 +280,7 @@
                 this.touched = {
                     productName: false,
                     category: false,
+                    rating: false,
                     stock: false,
                     price: false
                 };
@@ -347,9 +390,9 @@
                                 :class="{'border-red-500 focus:border-red-500 focus:ring-red-500/30': errors.category || serverErrors.category, 'border-gray-300 focus:border-pink-border focus:ring-pink-border/30': !errors.category && !serverErrors.category}"
                                 class="w-full h-10 px-3 border rounded-lg text-sm focus:ring-1 outline-none transition-colors appearance-none bg-white">
                             <option value="">Select Category</option>
-                            <option value="breads">Breads</option>
-                            <option value="cakes">Cakes</option>
-                            <option value="beverages">Beverages</option>
+                            <template x-for="option in categoryOptions" :key="option.value">
+                                <option :value="option.value" x-text="option.icon + ' ' + option.label"></option>
+                            </template>
                         </select>
                         <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -357,6 +400,16 @@
                             </svg>
                         </div>
                     </div>
+                    <!-- Selected Category Badge -->
+                    <template x-if="selectedCategoryDisplay">
+                        <div class="mt-2 flex items-center space-x-2">
+                            <span :class="selectedCategoryDisplay.bgColor + ' ' + selectedCategoryDisplay.borderColor + ' ' + selectedCategoryDisplay.color" 
+                                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border">
+                                <span x-text="selectedCategoryDisplay.icon" class="mr-1"></span>
+                                <span x-text="selectedCategoryDisplay.label"></span>
+                            </span>
+                        </div>
+                    </template>
                     <template x-if="errors.category">
                         <p class="text-xs text-red-500 mt-1">Please select a category</p>
                     </template>
@@ -364,6 +417,41 @@
                         <p class="text-xs text-red-500 mt-1" x-text="serverErrors.category[0]"></p>
                     </template>
                 </div>
+            </div>
+
+            <!-- Rating -->
+            <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                    Product Rating <span class="text-gray-400 text-xs font-normal">(Optional)</span>
+                </label>
+                <div class="relative">
+                    <select x-model="rating"
+                            @blur="validateField('rating')"
+                            @change="validateField('rating')"
+                            class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-pink-border focus:border-pink-border outline-none transition-colors appearance-none bg-white">
+                        <template x-for="option in ratingOptions" :key="option.value">
+                            <option :value="option.value" x-text="option.icon ? option.icon + ' ' + option.label : option.label"></option>
+                        </template>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Selected Rating Badge -->
+                <template x-if="selectedRatingDisplay && selectedRatingDisplay.value !== 'none'">
+                    <div class="mt-2 flex items-center space-x-2">
+                        <span :class="selectedRatingDisplay.bgColor + ' ' + selectedRatingDisplay.color" 
+                              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
+                            <span x-text="selectedRatingDisplay.icon" class="mr-1"></span>
+                            <span x-text="selectedRatingDisplay.label"></span>
+                        </span>
+                    </div>
+                </template>
+                <template x-if="serverErrors.rating">
+                    <p class="text-xs text-red-500 mt-1" x-text="serverErrors.rating[0]"></p>
+                </template>
             </div>
 
             <!-- Stock and Price -->

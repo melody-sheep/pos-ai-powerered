@@ -16,6 +16,7 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'category' => 'required|in:breads,cakes,beverages',
+            'rating' => 'nullable|in:none,top_rated,recommended,best_selling,new_arrival,popular',
             'stock' => 'required|integer|min:0',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 2MB max
@@ -29,6 +30,7 @@ class StoreProductRequest extends FormRequest
             'name.required' => 'Product name is required',
             'category.required' => 'Please select a category',
             'category.in' => 'Invalid category selected',
+            'rating.in' => 'Invalid rating selected',
             'stock.required' => 'Stock quantity is required',
             'stock.min' => 'Stock cannot be negative',
             'price.required' => 'Price is required',

@@ -90,6 +90,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'sometimes|string|max:255',
             'category' => 'sometimes|in:breads,cakes,beverages',
+            'rating' => 'nullable|in:none,top_rated,recommended,best_selling,new_arrival,popular',
             'stock' => 'sometimes|integer|min:0',
             'price' => 'sometimes|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
