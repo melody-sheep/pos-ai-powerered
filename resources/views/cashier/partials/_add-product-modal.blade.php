@@ -400,16 +400,6 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- Selected Category Badge -->
-                    <template x-if="selectedCategoryDisplay">
-                        <div class="mt-2 flex items-center space-x-2">
-                            <span :class="selectedCategoryDisplay.bgColor + ' ' + selectedCategoryDisplay.borderColor + ' ' + selectedCategoryDisplay.color" 
-                                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border">
-                                <span x-text="selectedCategoryDisplay.icon" class="mr-1"></span>
-                                <span x-text="selectedCategoryDisplay.label"></span>
-                            </span>
-                        </div>
-                    </template>
                     <template x-if="errors.category">
                         <p class="text-xs text-red-500 mt-1">Please select a category</p>
                     </template>
