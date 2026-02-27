@@ -260,12 +260,37 @@ class ProductManager {
         }
     }
 
+    // Category icons mapping (same as modal)
+    getCategoryIcon(category) {
+        const icons = {
+            'breads': '🥖',
+            'cakes': '🎂',
+            'beverages': '☕'
+        };
+        return icons[category] || '📦';
+    }
+
+    // Rating icons and colors mapping (same as modal)
+    getRatingDisplay(rating) {
+        const ratings = {
+            'top_rated': { icon: '⭐', label: 'Top Rated', color: 'text-yellow-500', bgColor: 'bg-yellow-50' },
+            'recommended': { icon: '👍', label: 'Recommended', color: 'text-blue-500', bgColor: 'bg-blue-50' },
+            'best_selling': { icon: '🔥', label: 'Best Selling', color: 'text-orange-500', bgColor: 'bg-orange-50' },
+            'new_arrival': { icon: '✨', label: 'New Arrival', color: 'text-purple-500', bgColor: 'bg-purple-50' },
+            'popular': { icon: '🏆', label: 'Popular', color: 'text-green-500', bgColor: 'bg-green-50' }
+        };
+        return ratings[rating] || null;
+    }
+
+
     renderProductCard(product) {
         const imageUrl = product.image_path 
             ? `/storage/${product.image_path}`
             : null;
         
         const stockStatus = this.getStockStatus(product.stock);
+        const categoryIcon = this.getCategoryIcon(product.category);
+        const ratingDisplay = this.getRatingDisplay(product.rating);
 
         return `
             <div class="product-card bg-white rounded-xl border border-gray-100 overflow-hidden">
@@ -288,7 +313,7 @@ class ProductManager {
                 <!-- Product Info -->
                 <div class="p-3">
                     <!-- Product Name with Stock Indicator -->
-                    <div class="flex items-start justify-between mb-1 gap-2">
+                    <div class="flex items-start justify-between mb-2 gap-2">
                         <h3 class="font-semibold text-gray-800 text-sm line-clamp-1 flex-1" title="${product.name}">
                             ${product.name}
                         </h3>
@@ -298,11 +323,28 @@ class ProductManager {
                         </div>
                     </div>
                     
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm font-bold text-pink-border">₱${parseFloat(product.price).toFixed(2)}</span>
-                        <span class="text-xs text-gray-500">Stock: ${product.stock}</span>
+                    <!-- Price -->
+                    <div class="mb-2">
+                        <span class="text-lg font-bold text-pink-border">₱${parseFloat(product.price).toFixed(2)}</span>
                     </div>
 
+                    <!-- Rating -->
+                    ${ratingDisplay ? `
+                    <div class="mb-2">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${ratingDisplay.bgColor} ${ratingDisplay.color}">
+                            <span class="mr-1">${ratingDisplay.icon}</span>
+                            <span>${ratingDisplay.label}</span>
+                        </span>
+                    </div>
+                    ` : ''}
+
+                    <!-- Category -->
+                    <div class="mb-3">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+                            <span class="mr-1">${categoryIcon}</span>
+                            <span class="capitalize">${product.category}</span>
+                        </span>
+                    </div>
 
                     <!-- Add to Order Button -->
                     <button 
@@ -319,6 +361,7 @@ class ProductManager {
             </div>
         `;
     }
+
 
     renderEmptyState() {
         return `
