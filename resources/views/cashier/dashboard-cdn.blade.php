@@ -77,14 +77,14 @@
         /* Product card - FIXED dimensions */
         .product-card {
             width: 100%;
-            height: 280px;
+            height: 330px;
             justify-self: start;
         }
 
         /* Add product frame - FIXED dimensions */
         .add-product-frame {
             width: 100%;
-            height: 280px;
+            height: 330px;
             justify-self: start;
         }
 
@@ -94,8 +94,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 400px; /* REDUCED from 500px */
-            padding: 1.5rem; /* REDUCED padding */
+            min-height: 500px; /* INCREASED for 2 rows */
+            padding: 1.5rem;
             text-align: center;
             width: 100%;
             height: 100%;
@@ -161,7 +161,7 @@
             height: 1.125rem; /* REDUCED from 1.25rem */
         }
 
-        /* Two-column container - REDUCED HEIGHT */
+        /* Two-column container - INCREASED HEIGHT for 2 rows of products */
         .two-column-container {
             position: relative;
             left: 40px;
@@ -171,19 +171,44 @@
             display: flex;
             gap: 30px;
             align-items: stretch;
-            height: 450px; /* REDUCED from 600px */
+            height: 550px; /* INCREASED for 2 rows */
         }
-dashboard.css
-        /* Each column - REDUCED HEIGHT */
-        .column {
+
+        /* Product selection column - INCREASED HEIGHT for 2 rows of products */
+        .column-products {
             flex: 1;
             min-width: 0;
-            height: 450px; /* REDUCED from 600px */
+            height: 550px; /* INCREASED for 2 rows */
             background: white;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            border: 2px solid rgba(255, 197, 217, 0.5);
+            background: linear-gradient(145deg, #ffffff, #fcfcfc);
+        }
+
+        .column-products:hover {
+            border-color: #FFC5D9;
+        }
+
+        /* Orders column - ORIGINAL HEIGHT */
+        .column-orders {
+            flex: 1;
+            min-width: 0;
+            height: 450px; /* ORIGINAL height */
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 2px dashed rgba(72, 69, 69, 0.3);
+            background: linear-gradient(145deg, #ffffff, #fafafa);
+        }
+
+        .column-orders:hover {
+            border-color: #484545;
+            border-style: dashed;
         }
     </style>
     

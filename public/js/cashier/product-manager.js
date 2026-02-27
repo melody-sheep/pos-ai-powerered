@@ -293,9 +293,9 @@ class ProductManager {
         const ratingDisplay = this.getRatingDisplay(product.rating);
 
         return `
-            <div class="product-card bg-white rounded-xl border border-gray-100 overflow-hidden">
-                <!-- Product Image -->
-                <div class="relative h-40 overflow-hidden">
+            <div class="product-card bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col">
+                <!-- Product Image - Fixed height, will not change -->
+                <div class="product-image-container relative overflow-hidden flex-shrink-0" style="height: 110px; min-height: 110px; max-height: 110px;">
                     ${imageUrl 
                         ? `<img src="${imageUrl}" 
                              alt="${product.name}"
@@ -310,10 +310,10 @@ class ProductManager {
                     }
                 </div>
 
-                <!-- Product Info -->
-                <div class="p-3">
+                <!-- Product Info - Fixed layout that doesn't expand -->
+                <div class="p-3 flex flex-col flex-grow">
                     <!-- Product Name with Stock Indicator -->
-                    <div class="flex items-start justify-between mb-2 gap-2">
+                    <div class="flex items-start justify-between mb-1 gap-2">
                         <h3 class="font-semibold text-gray-800 text-sm line-clamp-1 flex-1" title="${product.name}">
                             ${product.name}
                         </h3>
@@ -324,44 +324,46 @@ class ProductManager {
                     </div>
                     
                     <!-- Price -->
-                    <div class="mb-2">
+                    <div class="mb-1">
                         <span class="text-lg font-bold text-pink-border">₱${parseFloat(product.price).toFixed(2)}</span>
                     </div>
 
-                    <!-- Rating -->
-                    ${ratingDisplay ? `
-                    <div class="mb-2">
+                    <!-- Rating - Fixed height container -->
+                    <div class="h-6 mb-1">
+                        ${ratingDisplay ? `
                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${ratingDisplay.bgColor} ${ratingDisplay.color}">
                             <span class="mr-1">${ratingDisplay.icon}</span>
                             <span>${ratingDisplay.label}</span>
                         </span>
+                        ` : ''}
                     </div>
-                    ` : ''}
 
-                    <!-- Category -->
-                    <div class="mb-3">
+                    <!-- Category - Fixed height container -->
+                    <div class="h-6 mb-2">
                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
                             <span class="mr-1">${categoryIcon}</span>
                             <span class="capitalize">${product.category}</span>
                         </span>
                     </div>
 
-                    <!-- Add to Order Button -->
-                    <button 
-                        onclick="addToOrder(${product.id})"
-                        class="w-full text-sm font-semibold py-3 px-4 rounded-xl transition-all duration-300 ease-in-out flex items-center justify-center gap-2 group"
-                        style="background-color: #FFC5D9; color: #484545;"
-                        onmouseover="this.style.backgroundColor='#FF0059'; this.style.color='white'; this.querySelector('.plus-icon').style.display='inline-block';"
-                        onmouseout="this.style.backgroundColor='#FFC5D9'; this.style.color='#484545'; this.querySelector('.plus-icon').style.display='none';"
-                        onmousedown="this.style.backgroundColor='#FF0059'; this.style.color='white'; this.querySelector('.plus-icon').style.display='inline-block';"
-                        onmouseup="this.style.backgroundColor='#FF0059'; this.style.color='white';"
-                        ${product.stock < 1 ? 'disabled' : ''}
-                    >
-                        <svg class="plus-icon w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
-                        </svg>
-                        <span>Add to Order</span>
-                    </button>
+                    <!-- Add to Order Button - Always at bottom -->
+                    <div class="mt-auto mb-2">
+                        <button 
+                            onclick="addToOrder(${product.id})"
+                            class="w-full text-sm font-semibold py-2.5 px-4 rounded-xl transition-all duration-300 ease-in-out flex items-center justify-center gap-2 group"
+                            style="background-color: #FFC5D9; color: #484545;"
+                            onmouseover="this.style.backgroundColor='#FF0059'; this.style.color='white'; this.querySelector('.plus-icon').style.display='inline-block';"
+                            onmouseout="this.style.backgroundColor='#FFC5D9'; this.style.color='#484545'; this.querySelector('.plus-icon').style.display='none';"
+                            onmousedown="this.style.backgroundColor='#FF0059'; this.style.color='white'; this.querySelector('.plus-icon').style.display='inline-block';"
+                            onmouseup="this.style.backgroundColor='#FF0059'; this.style.color='white';"
+                            ${product.stock < 1 ? 'disabled' : ''}
+                        >
+                            <svg class="plus-icon w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+                            </svg>
+                            <span>Add to Order</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
